@@ -1,10 +1,13 @@
 const asyncHandler = require("express-async-handler");
 
+const Income = require("../models/incomesModel");
+
 // @desc    Get Incomes
 // @route   GET /user/incomes
 // @access  PRIVATE
 const getIncomes = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "User incomes" });
+  const incomes = await Income.find();
+  res.status(200).json(incomes);
 });
 
 // @desc    Set Incomes
@@ -16,21 +19,45 @@ const setIncome = asyncHandler(async (req, res) => {
     throw new Error("Введите значение прибыли.");
   }
 
-  res.status(200).json({ message: "Set user income" });
+  const goal = await Income.create({
+    value: req.body.value,
+  });
+
+  res.status(200).json(goal);
 });
 
 // @desc    Update Income
 // @route   PUT /user/incomes/:id
 // @access  PRIVATE
 const updateIncome = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Updated user income " + req.params.id });
+  const income = await Income.findById(req.params.id);
+
+  if (!income) {
+    res.status(400);
+    throw new Error("Выбранный доход не найден.");
+  }
+
+  const updatedIncome = await Income.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
+  res.status(200).json(updatedIncome);
 });
 
 // @desc    Delete Income
 // @route   DELETE /user/incomes
 // @access  PRIVATE
 const deleteIncome = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "User income deleted" });
+  const income = await Income.findById(req.params.id);
+
+  if (!income) {
+    res.status(400);
+    throw new Error("Доход не найден.");
+  }
+  await income.remove();
+
+  res.status(200).json({ id: req.params.id });
 });
 
 module.exports = {

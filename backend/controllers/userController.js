@@ -33,10 +33,10 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error(
       "Пароль не может быть короче 5-ти и длиннее 64-ёх символов."
     );
-  } else if (!/^[0-9A-Z]+$/i.test(password)) {
+  } else if (!/(?=.*\d)(?=.*[a-z])/i.test(password)) {
     res.status(400);
     throw new Error(
-      'Пароль может состоять только из латиницы и цифр, например: "password2022"'
+      'Пароль должен состоять только из латиницы и цифр, например: "password2022"'
     );
   } else if (password !== password2) {
     res.status(400);

@@ -14,7 +14,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!login || !name || !password || !password2) {
     res.status(400);
-    throw new Error("Заполните все поля.");
+    throw new Error("Заполните все поля");
   }
 
   // Check if user exists
@@ -22,33 +22,31 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error("Данный логин уже существует.");
+    throw new Error("Данный логин уже существует");
   }
 
   if (login.length > 50 || login.length < 5) {
     res.status(400);
-    throw new Error(
-      "Логин не может быть короче 5-ти и длиннее 50-ти символов."
-    );
+    throw new Error("Логин не может быть короче 5-ти и длиннее 50-ти символов");
   } else if (!/^[A-Z]+$/i.test(login)) {
     res.status(400);
-    throw new Error("В логине допускается только латиница, например: Genius.");
+    throw new Error("В логине допускается только латиница, например: Genius");
   } else if (name.length > 50) {
     res.status(400);
-    throw new Error("Имя не может быть длиннее 50-ти символов.");
+    throw new Error("Имя не может быть длиннее 50-ти символов");
   } else if (password.length < 5 || password.length > 64) {
     res.status(400);
     throw new Error(
-      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов. - Латиница и цифры, например: password2022."
+      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов. - Латиница и цифры, например: password2022"
     );
   } else if (!/(?=.*\d)(?=.*[a-z])/i.test(password)) {
     res.status(400);
     throw new Error(
-      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов. - Латиница и цифры, например: password2022."
+      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов. - Латиница и цифры, например: password2022"
     );
   } else if (password !== password2) {
     res.status(400);
-    throw new Error("Пароли не совпадают.");
+    throw new Error("Пароли не совпадают");
   }
 
   // Hash password
@@ -72,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
     throw new Error(
-      "Произошла ошибка при создании пользователя, повторите попытку позднее."
+      "Произошла ошибка при создании пользователя, повторите попытку позднее"
     );
   }
 });
@@ -95,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Введённые данные не верны.");
+    throw new Error("Данные для входа не верны или пользователь не существует");
   }
 
   res.json({ message: "Log In user" });

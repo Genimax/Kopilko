@@ -25,24 +25,28 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Данный логин уже существует");
   }
 
-  if (login.length > 50 || login.length < 5) {
-    res.status(400);
-    throw new Error("Логин не может быть короче 5-ти и длиннее 50-ти символов");
-  } else if (!/^[A-Z]+$/i.test(login)) {
-    res.status(400);
-    throw new Error("В логине допускается только латиница, например: Genius");
-  } else if (name.length > 50) {
-    res.status(400);
-    throw new Error("Имя не может быть длиннее 50-ти символов");
-  } else if (password.length < 5 || password.length > 64) {
+  if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
     res.status(400);
     throw new Error(
-      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов. - Латиница и цифры, например: password2022"
+      "Логин не соответствует требованиям: - Логин не может быть короче 5-ти и длиннее 50-ти символов; - В логине допускаются только латиница и цифры;"
     );
-  } else if (!/(?=.*\d)(?=.*[a-z])/i.test(password)) {
+  } else if (
+    name.length > 50 ||
+    !/^[A-ZА-Я ]+$/i.test(name) ||
+    !name.trim().length
+  ) {
     res.status(400);
     throw new Error(
-      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов. - Латиница и цифры, например: password2022"
+      "Имя не соответстует требованиям: - Не может быть длиннее 50-ти символов; - Может содержать только слова разделённые пробелами;"
+    );
+  } else if (
+    password.length < 5 ||
+    password.length > 64 ||
+    !/(?=.*\d)(?=.*[a-z])/i.test(password)
+  ) {
+    res.status(400);
+    throw new Error(
+      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов; - Латиница и цифры, например: password2022;"
     );
   } else if (password !== password2) {
     res.status(400);
@@ -56,7 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // Create user
   const user = await User.create({
     login,
-    name,
+    name: name.trim(),
     password: hashedPassword,
   });
 
@@ -95,8 +99,6 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Данные для входа не верны или пользователь не существует");
   }
-
-  res.json({ message: "Log In user" });
 });
 
 // @desc Get User Data

@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const asyncHandler = require("express-async-handler");
-const User = require("../models/userModel");
-const e = require("express");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const asyncHandler = require('express-async-handler');
+const User = require('../models/userModel');
+const e = require('express');
 
 // @desc Register New User
 // @route /users/registration
@@ -14,7 +14,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!login || !name || !password || !password2) {
     res.status(400);
-    throw new Error("Заполните все поля");
+    throw new Error('Заполните все поля');
   }
 
   // Check if user exists
@@ -22,13 +22,13 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error("Данный логин уже существует");
+    throw new Error('Данный логин уже существует');
   }
 
   if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
     res.status(400);
     throw new Error(
-      "Логин не соответствует требованиям: - Логин не может быть короче 5-ти и длиннее 50-ти символов; - В логине допускаются только латиница и цифры;"
+      'Логин не соответствует требованиям: - Логин не может быть короче 5-ти и длиннее 50-ти символов; - В логине допускаются только латиница и цифры;'
     );
   } else if (
     name.length > 50 ||
@@ -37,7 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
   ) {
     res.status(400);
     throw new Error(
-      "Имя не соответстует требованиям: - Не может быть длиннее 50-ти символов; - Может содержать только слова разделённые пробелами;"
+      'Имя не соответстует требованиям: - Не может быть длиннее 50-ти символов; - Может содержать только слова разделённые пробелами;'
     );
   } else if (
     password.length < 5 ||
@@ -46,11 +46,11 @@ const registerUser = asyncHandler(async (req, res) => {
   ) {
     res.status(400);
     throw new Error(
-      "Пароль не соответствует требованиям: - Должен состоять из 5-64 символов; - Латиница и цифры, например: password2022;"
+      'Пароль не соответствует требованиям: - Должен состоять из 5-64 символов; - Латиница и цифры, например: password2022;'
     );
   } else if (password !== password2) {
     res.status(400);
-    throw new Error("Пароли не совпадают");
+    throw new Error('Пароли не совпадают');
   }
 
   // Hash password
@@ -74,7 +74,7 @@ const registerUser = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
     throw new Error(
-      "Произошла ошибка при создании пользователя, повторите попытку позднее"
+      'Произошла ошибка при создании пользователя, повторите попытку позднее'
     );
   }
 });
@@ -97,7 +97,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Данные для входа не верны или пользователь не существует");
+    throw new Error('Данные для входа не верны или пользователь не существует');
   }
 });
 
@@ -117,7 +117,7 @@ const getMe = asyncHandler(async (req, res) => {
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "24h",
+    expiresIn: '24h',
   });
 };
 

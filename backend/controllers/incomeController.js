@@ -1,6 +1,6 @@
-const asyncHandler = require("express-async-handler");
+const asyncHandler = require('express-async-handler');
 
-const Income = require("../models/incomesModel");
+const Income = require('../models/incomesModel');
 
 // @desc    Get Incomes
 // @route   GET /user/incomes
@@ -16,7 +16,7 @@ const getIncomes = asyncHandler(async (req, res) => {
 const setIncome = asyncHandler(async (req, res) => {
   if (!req.body.value) {
     res.status(400);
-    throw new Error("Введите значение прибыли.");
+    throw new Error('Введите значение прибыли.');
   }
 
   const goal = await Income.create({
@@ -34,7 +34,7 @@ const updateIncome = asyncHandler(async (req, res) => {
 
   if (!income) {
     res.status(400);
-    throw new Error("Выбранный доход не найден.");
+    throw new Error('Выбранный доход не найден.');
   }
 
   const updatedIncome = await Income.findByIdAndUpdate(
@@ -53,7 +53,7 @@ const deleteIncome = asyncHandler(async (req, res) => {
 
   if (!income) {
     res.status(400);
-    throw new Error("Доход не найден.");
+    throw new Error('Доход не найден.');
   }
   await income.remove();
 

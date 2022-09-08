@@ -11,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));
 
 app.use('/user/incomes', require('./routes/incomesRoutes'));
 app.use('/users', require('./routes/userRoutes'));

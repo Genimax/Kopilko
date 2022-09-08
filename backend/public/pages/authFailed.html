@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/pages/style.css" />
+    <title>Kopilko Authorization</title>
+  </head>
+  <body>
+    <div class="left-container">
+      <form
+        class="auth-container"
+        action="https://kopilko.herokuapp.com/users/login"
+        method="post"
+      >
+        <h1 class="auth-header">Авторизация</h1>
+        <p class="auth-subheader">
+          Заполните все поля для успешной авторизации
+        </p>
+        <div class="login-container">
+          <img
+            src="../images/Vector-login.svg"
+            alt="login icon"
+            class="login-icon"
+          />
+          <input
+            type="text"
+            name="login"
+            required
+            autofocus
+            placeholder="Введите логин*"
+            onchange="errorSwitch()"
+            class="login-input wrong-credentials"
+            id="login-auth-input"
+          />
+        </div>
+        <div class="password-container">
+          <img
+            src="../images/Vector-password.svg"
+            alt="password icon"
+            class="password-icon"
+          />
+          <img
+            src="../images/Hidden-password.svg"
+            alt="hidden icon"
+            class="hide-password hide-item"
+            id="icon-hide-password"
+            onclick="passwordVisibility()"
+          /><img
+            src="../images/Hidden-password-white.svg"
+            alt="hidden icon"
+            class="hide-password-white"
+            id="icon-hide-password-white"
+            onclick="passwordVisibility()"
+          />
+          <input
+            type="password"
+            name="password"
+            required
+            onchange="errorSwitch()"
+            placeholder="Введите пароль*"
+            class="login-input password-input wrong-credentials"
+            id="password-auth-input"
+          />
+        </div>
+        <div class="alert-message" id="alert-message">
+          <span class="alert-sign">!</span>
+          <p>Данные для входа не верны или пользователь не существует</p>
+        </div>
+        <div class="login-button-div">
+          <button class="login-button" type="submit">Войти</button>
+        </div>
+      </form>
+    </div>
+    <div class="right-container">
+      <div class="header-logo">
+        <img
+          src="../images/vector-logo.svg"
+          alt="Kopilko logo"
+          class="kopilko-logo-img"
+        />
+        <h3 class="kopilko-logo-text">Kopilko</h3>
+      </div>
+      <section class="hello-container">
+        <h2 class="secondary-section-text-head">Привет, друг!</h2>
+        <p class="secondary-section-text-subhead">
+          Если у тебя нет аккаунта, ты всегда можешь зарегистрироваться
+        </p>
+        <a href="#">
+          <button class="secondary-auth-button" type="button">
+            Регистрация
+          </button>
+        </a>
+      </section>
+    </div>
+
+    <script>
+      function passwordVisibility() {
+        const passwordAuthInput = document.getElementById(
+          'password-auth-input'
+        );
+        const hideIcon = document.getElementById('icon-hide-password');
+        const hideIconWhite = document.getElementById(
+          'icon-hide-password-white'
+        );
+
+        if (passwordAuthInput.type === 'password') {
+          passwordAuthInput.type = 'text';
+        } else {
+          passwordAuthInput.type = 'password';
+        }
+      }
+
+      function errorSwitch() {
+        const loginField = document.getElementById('login-auth-input');
+        const passwordField = document.getElementById('password-auth-input');
+        const hidePasswordDefault =
+          document.getElementById('icon-hide-password');
+        const hidePasswordError = document.getElementById(
+          'icon-hide-password-white'
+        );
+        const alertMessage = document.getElementById('alert-message');
+
+        loginField.classList.remove('wrong-credentials');
+        passwordField.classList.remove('wrong-credentials');
+        hidePasswordError.classList.add('hide-item');
+        hidePasswordDefault.classList.remove('hide-item');
+        alertMessage.classList.add('hide-item');
+      }
+    </script>
+  </body>
+</html>

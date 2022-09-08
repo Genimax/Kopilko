@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
@@ -85,7 +86,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { login, password } = req.body;
 
-  // Check for user email
+  // Check for user login
   const user = await User.findOne({ login });
 
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -97,8 +98,17 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('Данные для входа не верны или пользователь не существует');
+    // throw new Error('Данные для входа не верны или пользователь не существует');
+    res.sendFile(path.join(__dirname, '../public/pages/authFailed.html'));
   }
+});
+
+// @desc Login Page
+// @route /users/login
+// @access Public
+
+const loginPage = asyncHandler(async (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/pages/auth.html'));
 });
 
 // @desc Get User Data
@@ -121,4 +131,4 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser, getMe };
+module.exports = { registerUser, loginUser, loginPage, getMe };

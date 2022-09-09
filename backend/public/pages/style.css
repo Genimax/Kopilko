@@ -150,6 +150,18 @@ body {
   align-self: center;
   right: 0.45rem;
   fill: black;
+  transition: transform 0.2s ease-in-out, scale 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.hide-password:hover,
+.hide-password-white:hover {
+  transform: rotate(-180deg) scale(0.9);
+}
+
+.hide-password:active,
+.hide-password-white:active {
+  transform: scale(1) rotate(-180deg);
 }
 
 .login-button-div {

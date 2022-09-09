@@ -39,7 +39,7 @@ const loginValidation = async function () {
   const regButton = document.getElementById('reg_button');
 
   // TODO
-  const url = 'https://kopilko.herokuapp.com/users/registration';
+  const url = '/users/registration';
 
   if (login) {
     if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
@@ -189,6 +189,7 @@ const buttonValidation = () => {
   const regButton = document.getElementById('reg_button');
 
   if (
+    loginField.classList.contains('wrong-credentials') ||
     !login ||
     !nameValue ||
     !password1 ||

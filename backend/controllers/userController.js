@@ -49,7 +49,8 @@ const registerUser = asyncHandler(async (req, res) => {
   } else if (
     password1.length < 5 ||
     password1.length > 64 ||
-    !/^[a-z0-9]+$/i.test(password1)
+    !/^[a-z]+$/i.test(password1) ||
+    !/^[0-9]+$/i.test(password1)
   ) {
     res.status(400);
     throw new Error(

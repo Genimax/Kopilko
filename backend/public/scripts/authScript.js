@@ -187,8 +187,10 @@ const buttonValidation = () => {
   const password1 = document.getElementById(`password-auth-input-1`).value;
   const password2 = document.getElementById(`password-auth-input-2`).value;
   const regButton = document.getElementById('reg_button');
+  const loginExists = document.getElementById('login_exists');
 
   if (
+    !loginExists.classList.contains('hide-item') ||
     loginField.classList.contains('wrong-credentials') ||
     !login ||
     !nameValue ||

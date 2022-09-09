@@ -208,7 +208,8 @@ const buttonValidation = () => {
     !nameValue.trim().length ||
     password1.length < 5 ||
     password1.length > 64 ||
-    !/^[a-z0-9]+$/i.test(password1) ||
+    !/[a-z]+/i.test(password1) ||
+    !/[0-9]+/i.test(password1) ||
     password1 !== password2
   ) {
     regButton.disabled = true;

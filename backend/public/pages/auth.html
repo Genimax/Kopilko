@@ -8,12 +8,8 @@
     <title>Kopilko Authorization</title>
   </head>
   <body>
-    <div class="left-container">
-      <form
-        class="auth-container"
-        action="https://kopilko.herokuapp.com/users/login"
-        method="post"
-      >
+    <div class="prime-container">
+      <form class="auth-container" action="/users/login" method="post">
         <h1 class="auth-header">Авторизация</h1>
         <p class="auth-subheader">
           Заполните все поля для успешной авторизации
@@ -72,7 +68,7 @@
       </form>
     </div>
 
-    <div class="right-container">
+    <div class="secondary-container">
       <a href="#">
         <div class="header-logo">
           <img
@@ -88,7 +84,7 @@
         <p class="secondary-section-text-subhead">
           Если у тебя нет аккаунта, ты всегда можешь зарегистрироваться
         </p>
-        <a href="#">
+        <a href="/users/registration">
           <button class="secondary-auth-button" type="button">
             Регистрация
           </button>
@@ -96,22 +92,6 @@
       </section>
     </div>
 
-    <script>
-      function passwordVisibility() {
-        const passwordAuthInput = document.getElementById(
-          'password-auth-input'
-        );
-        const hideIcon = document.getElementById('icon-hide-password');
-        const hideIconWhite = document.getElementById(
-          'icon-hide-password-white'
-        );
-
-        if (passwordAuthInput.type === 'password') {
-          passwordAuthInput.type = 'text';
-        } else {
-          passwordAuthInput.type = 'password';
-        }
-      }
-    </script>
+    <script src="/scripts/authScript.js"></script>
   </body>
 </html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/pages/style.css" />
+    <title>Kopilko Registration</title>
+  </head>
+  <body>
+    <div class="secondary-container"><a href="#">
+        <div class="header-logo">
+          <img
+            src="../images/vector-logo.svg"
+            alt="Kopilko logo"
+            class="kopilko-logo-img"
+          />
+          <h3 class="kopilko-logo-text">Kopilko</h3>
+        </div>
+      </a>
+      <section class="hello-container">
+        <h2 class="secondary-section-text-head">Уже зарегестрированы?</h2>
+        <a href="/users/login">
+          <button class="secondary-auth-button" type="button">
+            Авторизоваться
+          </button>
+        </a></div>
+    <div class="prime-container">
+        <form
+        class="auth-container"
+        action="/users/registration"
+        method="post"
+      >
+        <h1 class="auth-header">Создание аккаунта</h1>
+        <p class="auth-subheader">
+          Заполните все поля для успешной регистрации
+        </p>
+        
+        <div class="login-container">
+          <img
+            src="../images/Vector-login.svg"
+            alt="login icon"
+            class="login-icon"
+          />
+          <input
+            type="text"
+            name="login"
+            required
+            autofocus
+            minlength="5"
+            maxlength="50"
+            onchange="loginValidation()"
+            placeholder="Введите логин*"
+            class="login-input"
+            id="login"
+          />
+          <p class='hide-item' id="login_exists">! Данный логин уже существует</p>
+        </div>
+
+        <div class="name-container">
+          <img
+            src="../images/Vector-login.svg"
+            alt="login icon"
+            class="login-icon"
+          />
+          <input
+            type="text"
+            name="name"
+            required
+            onchange="nameValidation()"
+            placeholder="Введите имя*"
+            class="login-input"
+            id="name_field"
+          />
+        </div>
+        <div class="password-container">
+          <img
+            src="../images/Vector-password.svg"
+            alt="password icon"
+            class="password-icon"
+          />
+          <img
+            src="../images/Hidden-password.svg"
+            alt="hidden icon"
+            class="hide-password"
+            id="icon-hide-password-1"
+            onclick="passwordVisibility(1)"
+          /><img
+            src="../images/Hidden-password-white.svg"
+            alt="hidden icon"
+            class="hide-password-white hide-item"
+            id="icon-hide-password-white-1"
+            onclick="passwordVisibility(1)"
+          />
+          <input
+            type="password"
+            name="password1"
+            required
+            onchange="passwordValidation(1)"
+            placeholder="Введите пароль*"
+            class="login-input password-input"
+            id="password-auth-input-1"
+          />
+        </div>
+        <div class="password-container">
+          <img
+            src="../images/Vector-repeat-password.svg"
+            alt="password icon"
+            class="password-icon"
+          />
+          <img
+            src="../images/Hidden-password.svg"
+            alt="hidden icon"
+            class="hide-password"
+            id="icon-hide-password-2"
+            onclick="passwordVisibility(2)"
+          /><img
+            src="../images/Hidden-password-white.svg"
+            alt="hidden icon"
+            class="hide-password-white hide-item"
+            id="icon-hide-password-white-2"
+            onclick="passwordVisibility(2)"
+          />
+          <input
+            type="password"
+            name="password2"
+            required
+            onchange="passwordValidation(2)"
+            placeholder="Повторите пароль*"
+            class="login-input password-input"
+            id="password-auth-input-2"
+          />
+
+        </div>
+
+        
+        <div class="requirements-message">
+
+            <p id="login_reqs">- Логин должен быть уникальным и содержать от 5-ти до 50-ти символов, допускаются только латиница и цифры</p>
+            <p id="name_reqs">- Имя может быть длиной до 50-ти символов и содержит только слова, разделённые пробелами</p>
+            <p id="password_reqs">- Пароль должен содержать от 5-ти до 64-х символов, латиницу и цифры</p>
+            <p id="password_repeat_reqs">- Введённые пароли должны совпадать</p>
+          </div>
+        <div class="registration-button-div">
+          <button class="login-button" type="submit" id="reg_button"
+          disabled>Создать</button>
+        </div>
+      </form>
+    </div>
+    <script src="/scripts/authScript.js"></script>
+  </body>
+</html>

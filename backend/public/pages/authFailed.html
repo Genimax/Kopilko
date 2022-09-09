@@ -8,7 +8,7 @@
     <title>Kopilko Authorization</title>
   </head>
   <body>
-    <div class="left-container">
+    <div class="prime-container">
       <form
         class="auth-container"
         action="https://kopilko.herokuapp.com/users/login"
@@ -73,7 +73,7 @@
         </div>
       </form>
     </div>
-    <div class="right-container">
+    <div class="secondary-container">
       <div class="header-logo">
         <img
           src="../images/vector-logo.svg"
@@ -95,39 +95,6 @@
       </section>
     </div>
 
-    <script>
-      function passwordVisibility() {
-        const passwordAuthInput = document.getElementById(
-          'password-auth-input'
-        );
-        const hideIcon = document.getElementById('icon-hide-password');
-        const hideIconWhite = document.getElementById(
-          'icon-hide-password-white'
-        );
-
-        if (passwordAuthInput.type === 'password') {
-          passwordAuthInput.type = 'text';
-        } else {
-          passwordAuthInput.type = 'password';
-        }
-      }
-
-      function errorSwitch() {
-        const loginField = document.getElementById('login-auth-input');
-        const passwordField = document.getElementById('password-auth-input');
-        const hidePasswordDefault =
-          document.getElementById('icon-hide-password');
-        const hidePasswordError = document.getElementById(
-          'icon-hide-password-white'
-        );
-        const alertMessage = document.getElementById('alert-message');
-
-        loginField.classList.remove('wrong-credentials');
-        passwordField.classList.remove('wrong-credentials');
-        hidePasswordError.classList.add('hide-item');
-        hidePasswordDefault.classList.remove('hide-item');
-        alertMessage.classList.add('hide-item');
-      }
-    </script>
+    <script src="/scripts/authScript.js"></script>
   </body>
 </html>

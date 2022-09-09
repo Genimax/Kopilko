@@ -5,26 +5,30 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 const e = require('express');
 
+// @desc Registration Page
+// @route /users/registration
+// @access Public
+const registrationPage = asyncHandler(async (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/pages/registration.html'));
+});
+
 // @desc Register New User
 // @route /users/registration
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { login, name, password, password2 } = req.body;
-
-  // Form Validation
-
-  if (!login || !name || !password || !password2) {
-    res.status(400);
-    throw new Error('Заполните все поля');
-  }
+  const { login, name, password1, password2 } = req.body;
 
   // Check if user exists
-  const userExists = await User.findOne({ login });
 
-  if (userExists) {
-    res.status(400);
-    throw new Error('Данный логин уже существует');
+  if (login) {
+    const userExists = await User.findOne({ login });
+
+    if (userExists) {
+      res.status(400);
+      throw new Error('Данный логин уже существует');
+    }
   }
+  // Form Validation
 
   if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
     res.status(400);
@@ -41,22 +45,22 @@ const registerUser = asyncHandler(async (req, res) => {
       'Имя не соответстует требованиям: - Не может быть длиннее 50-ти символов; - Может содержать только слова разделённые пробелами;'
     );
   } else if (
-    password.length < 5 ||
-    password.length > 64 ||
-    !/(?=.*\d)(?=.*[a-z])/i.test(password)
+    password1.length < 5 ||
+    password1.length > 64 ||
+    !/(?=.*\d)(?=.*[a-z])/i.test(password1)
   ) {
     res.status(400);
     throw new Error(
       'Пароль не соответствует требованиям: - Должен состоять из 5-64 символов; - Латиница и цифры, например: password2022;'
     );
-  } else if (password !== password2) {
+  } else if (password1 !== password2) {
     res.status(400);
     throw new Error('Пароли не совпадают');
   }
 
   // Hash password
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  const hashedPassword = await bcrypt.hash(password1, salt);
 
   // Create user
   const user = await User.create({
@@ -66,12 +70,15 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
-      _id: user.id,
-      login: user.login,
-      name: user.name,
-      token: generateToken(user._id),
-    });
+    // res.status(201).json({
+    //   _id: user.id,
+    //   login: user.login,
+    //   name: user.name,
+    //   token: generateToken(user._id),
+    // });
+
+    res.status(201);
+    res.sendFile(path.join(__dirname, '../public/pages/auth.html'));
   } else {
     res.status(400);
     throw new Error(
@@ -90,12 +97,18 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ login });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
-      _id: user.id,
-      login: user.login,
-      name: user.name,
-      token: generateToken(user._id),
-    });
+    // TODO
+    res.status(200);
+    // res.json({
+    //   _id: user.id,
+    //   login: user.login,
+    //   name: user.name,
+    //   token: generateToken(user._id),
+    // });
+
+    res.redirect(
+      'https://i.ytimg.com/vi/_kgWVBjAqDA/maxresdefault.jpg?7857057827'
+    );
   } else {
     res.status(400);
     // throw new Error('Данные для входа не верны или пользователь не существует');
@@ -106,7 +119,6 @@ const loginUser = asyncHandler(async (req, res) => {
 // @desc Login Page
 // @route /users/login
 // @access Public
-
 const loginPage = asyncHandler(async (req, res) => {
   res.sendFile(path.join(__dirname, '../public/pages/auth.html'));
 });
@@ -131,4 +143,10 @@ const generateToken = (id) => {
   });
 };
 
-module.exports = { registerUser, loginUser, loginPage, getMe };
+module.exports = {
+  registrationPage,
+  registerUser,
+  loginUser,
+  loginPage,
+  getMe,
+};

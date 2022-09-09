@@ -33,7 +33,7 @@ function errorSwitch() {
 
 const loginValidation = async function () {
   const loginField = document.getElementById('login');
-  const login = loginField.value;
+  let login = loginField.value;
   const msgMain = document.getElementById('login_reqs');
   const alert = document.getElementById('login_exists');
   const regButton = document.getElementById('reg_button');
@@ -42,6 +42,8 @@ const loginValidation = async function () {
   const url = '/users/registration';
 
   if (login) {
+    loginField.value = login.replaceAll(' ', '');
+    login = login.replaceAll(' ', '');
     if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
       loginField.classList.add('wrong-credentials');
       msgMain.classList.add('incorrect-alert');
@@ -71,6 +73,7 @@ const loginValidation = async function () {
     }
   } else {
     alert.classList.add('hide-item');
+    msgMain.classList.remove('incorrect-alert');
     loginField.classList.remove('wrong-credentials');
   }
 };

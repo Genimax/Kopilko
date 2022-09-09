@@ -21,7 +21,9 @@ const registerUser = asyncHandler(async (req, res) => {
   // Check if user exists
 
   if (login) {
-    const userExists = await User.findOne({ login });
+    const userExists = await User.findOne({
+      login: login.toLowerCase(),
+    });
 
     if (userExists) {
       res.status(400);
@@ -64,7 +66,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Create user
   const user = await User.create({
-    login,
+    login: login.toLowerCase(),
     name: name.trim(),
     password: hashedPassword,
   });

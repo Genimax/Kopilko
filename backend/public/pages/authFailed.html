@@ -9,11 +9,7 @@
   </head>
   <body>
     <div class="prime-container">
-      <form
-        class="auth-container"
-        action="https://kopilko.herokuapp.com/users/login"
-        method="post"
-      >
+      <form class="auth-container" action="/users/login" method="post">
         <h1 class="auth-header">Авторизация</h1>
         <p class="auth-subheader">
           Заполните все поля для успешной авторизации
@@ -87,7 +83,7 @@
         <p class="secondary-section-text-subhead">
           Если у тебя нет аккаунта, ты всегда можешь зарегистрироваться
         </p>
-        <a href="#">
+        <a href="/users/registration">
           <button class="secondary-auth-button" type="button">
             Регистрация
           </button>

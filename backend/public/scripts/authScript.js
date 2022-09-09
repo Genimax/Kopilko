@@ -52,7 +52,7 @@ const loginValidation = async function () {
       xhr.open('POST', url, true);
       xhr.onload = () => {
         // User exists
-        if (xhr.status === 400) {
+        if (xhr.status === 400 || xhr.status === 0) {
           regButton.disabled = true;
           alert.classList.remove('hide-item');
           loginField.classList.add('wrong-credentials');
@@ -150,7 +150,7 @@ const passwordValidation = function (passwordCalledNumber) {
     password1 &&
     (password1.length < 5 ||
       password1.length > 64 ||
-      !/(?=.*\d)(?=.*[a-z])/i.test(password1))
+      !/^[a-z0-9]+$/i.test(password1))
   ) {
     hidePasswordIcon1.classList.add('hide-item');
     hidePasswordIconWhite1.classList.remove('hide-item');
@@ -202,7 +202,7 @@ const buttonValidation = () => {
     !nameValue.trim().length ||
     password1.length < 5 ||
     password1.length > 64 ||
-    !/(?=.*\d)(?=.*[a-z])/i.test(password1) ||
+    !/^[a-z0-9]+$/i.test(password1) ||
     password1 !== password2
   ) {
     regButton.disabled = true;

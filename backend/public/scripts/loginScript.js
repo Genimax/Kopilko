@@ -16,5 +16,3 @@ function passwordVisibility(password) {
     passwordAuthInput.type = 'password';
   }
 }
-
-module.exports = passwordVisibility;

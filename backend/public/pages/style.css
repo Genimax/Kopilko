@@ -101,6 +101,11 @@ body {
   position: absolute;
   align-self: center;
   left: -1.35rem;
+  transition: transform 0.5s ease-out;
+}
+
+.login-icon:hover {
+  transform: rotate(360deg);
 }
 
 .login-input {
@@ -137,10 +142,38 @@ body {
 }
 
 .password-icon {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   width: 0.8rem;
   position: absolute;
   align-self: center;
   left: -1.35rem;
+  transition: transform 0.5s ease-out;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.password-icon:hover {
+  transform: rotate(360deg);
 }
 
 .hide-password,
@@ -150,18 +183,20 @@ body {
   align-self: center;
   right: 0.45rem;
   fill: black;
-  transition: transform 0.2s ease-in-out, scale 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, scale 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .hide-password:hover,
 .hide-password-white:hover {
-  transform: rotate(-180deg) scale(0.9);
+  transform: rotate(-180deg) scale(0.8);
 }
 
 .hide-password:active,
 .hide-password-white:active {
-  transform: scale(1) rotate(-180deg);
+  transform: rotate(-180deg) scale(0.8);
+  opacity: 0.5;
 }
 
 .login-button-div {

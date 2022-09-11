@@ -1,3 +1,7 @@
+const passwordVisibility = require('./loginScript');
+
+passwordVisibility;
+
 function errorSwitch() {
   const loginField = document.getElementById('login-auth-input');
   const passwordField = document.getElementById('password-auth-input');

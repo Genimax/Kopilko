@@ -171,15 +171,15 @@ const passwordValidation = function (passwordCalledNumber) {
     (password1.length < 5 ||
       password1.length > 64 ||
       !/[a-z]+/i.test(password1) ||
-      !/[0-9]+/i.test(password1))
+      !/[0-9]+/i.test(password1) ||
+      /[а-я]+/i.test(password1) ||
+      password2.includes(' '))
   ) {
-    console.log('incorrect password', password1);
     hidePasswordIcon1.classList.add('hide-item');
     hidePasswordIconWhite1.classList.remove('hide-item');
     passwordField1.classList.add('wrong-credentials');
     msgReqs.classList.add('incorrect-alert');
   } else {
-    console.log('correct password', password1);
     passwordField1.classList.remove('wrong-credentials');
     setPasswordIcon('correct');
     msgReqs.classList.remove('incorrect-alert');
@@ -190,7 +190,9 @@ const passwordValidation = function (passwordCalledNumber) {
     (password2.length < 5 ||
       password2.length > 64 ||
       !/[a-z]+/i.test(password2) ||
-      !/[0-9]+/i.test(password2))
+      !/[0-9]+/i.test(password2) ||
+      /[а-я]+/i.test(password2) ||
+      password2.includes(' '))
   ) {
     hidePasswordIcon2.classList.add('hide-item');
     hidePasswordIconWhite2.classList.remove('hide-item');

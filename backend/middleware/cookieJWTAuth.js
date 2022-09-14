@@ -17,7 +17,7 @@ const checkToken = (req, res, next) => {
 
 const generateToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
-    expiresIn: '24h',
+    expiresIn: '10s',
   });
 };
 

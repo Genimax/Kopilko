@@ -36,20 +36,6 @@ function passwordVisibility(password) {
   }
 }
 
-function errorSwitch() {
-  const loginField = document.getElementById('login-auth-input');
-  const passwordField = document.getElementById('password-auth-input');
-  const hidePasswordDefault = document.getElementById('icon-hide-password');
-  const hidePasswordError = document.getElementById('icon-hide-password-white');
-  const alertMessage = document.getElementById('alert-message');
-
-  loginField.classList.remove('wrong-credentials');
-  passwordField.classList.remove('wrong-credentials');
-  hidePasswordError.classList.add('hide-item');
-  hidePasswordDefault.classList.remove('hide-item');
-  alertMessage.classList.add('hide-item');
-}
-
 const loginValidation = async function () {
   const loginField = document.getElementById('login');
   let login = loginField.value;
@@ -172,8 +158,7 @@ const passwordValidation = function (passwordCalledNumber) {
       password1.length > 64 ||
       !/[a-z]+/i.test(password1) ||
       !/[0-9]+/i.test(password1) ||
-      /[а-я]+/i.test(password1) ||
-      password2.includes(' '))
+      /[а-я]+/i.test(password1))
   ) {
     hidePasswordIcon1.classList.add('hide-item');
     hidePasswordIconWhite1.classList.remove('hide-item');
@@ -191,8 +176,7 @@ const passwordValidation = function (passwordCalledNumber) {
       password2.length > 64 ||
       !/[a-z]+/i.test(password2) ||
       !/[0-9]+/i.test(password2) ||
-      /[а-я]+/i.test(password2) ||
-      password2.includes(' '))
+      /[а-я]+/i.test(password2))
   ) {
     hidePasswordIcon2.classList.add('hide-item');
     hidePasswordIconWhite2.classList.remove('hide-item');
@@ -231,7 +215,8 @@ const buttonValidation = () => {
     password1.length > 64 ||
     !/[a-z]+/i.test(password1) ||
     !/[0-9]+/i.test(password1) ||
-    password1 !== password2
+    password1 !== password2 ||
+    /[а-я]+/i.test(password2)
   ) {
     regButton.disabled = true;
   } else {

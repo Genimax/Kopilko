@@ -2,8 +2,11 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
+const {
+  generateToken,
+  onlyWithoutToken,
+} = require('../middleware/cookieJWTAuth.js');
 const User = require('../models/userModel');
-const e = require('express');
 
 // @desc Registration Page
 // @route /users/registration
@@ -16,6 +19,7 @@ const registrationPage = asyncHandler(async (req, res) => {
 // @route /users/registration
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
+  onlyWithoutToken(req, res, next);
   const { login, name, password1, password2 } = req.body;
 
   // Check if user exists
@@ -66,6 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password1, salt);
 
   // Create user
+
   const user = await User.create({
     login: login.toLowerCase(),
     name: name.trim(),
@@ -91,16 +96,19 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 // @desc Authentificate A User
-// @route /users/login
+// @route POST /users/login
 // @access Public
 const loginUser = asyncHandler(async (req, res) => {
-  const { login, password } = req.body;
+  onlyWithoutToken(req, res);
+  let { login, password } = req.body;
+  login = login.toLowerCase();
 
   // Check for user login
   const user = await User.findOne({ login });
 
   if (user && (await bcrypt.compare(password, user.password))) {
     // TODO
+    res.cookie('token', generateToken(user._id));
     res.status(200);
     // res.json({
     //   _id: user.id,
@@ -109,9 +117,7 @@ const loginUser = asyncHandler(async (req, res) => {
     //   token: generateToken(user._id),
     // });
 
-    res.redirect(
-      'https://i.ytimg.com/vi/_kgWVBjAqDA/maxresdefault.jpg?7857057827'
-    );
+    res.redirect('/dashboard');
   } else {
     res.status(400);
     // throw new Error('Данные для входа не верны или пользователь не существует');
@@ -138,13 +144,6 @@ const getMe = asyncHandler(async (req, res) => {
     name,
   });
 });
-
-// Generate JWT
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '24h',
-  });
-};
 
 module.exports = {
   registrationPage,

@@ -6,7 +6,9 @@ const checkToken = (req, res, next) => {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;
     generateToken(user.id);
-    next();
+    try {
+      next();
+    } catch {}
   } catch (err) {
     res.clearCookie('token');
     return res.redirect('/users/login');

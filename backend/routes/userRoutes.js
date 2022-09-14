@@ -1,20 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const { checkToken, onlyWithoutToken } = require('../middleware/cookieJWTAuth');
 
 const {
   registrationPage,
   registerUser,
   loginUser,
   loginPage,
-  getMe,
+  changeName,
+  changePassword,
 } = require('../controllers/userController');
 
-const { protect } = require('../middleware/authMiddleware');
-
-router.post('/registration', registerUser);
-router.get('/registration', registrationPage);
-router.post('/login', loginUser);
-router.get('/login', loginPage);
-router.get('/me', protect, getMe);
+router.post('/registration', onlyWithoutToken, registerUser);
+router.get('/registration', onlyWithoutToken, registrationPage);
+router.post('/login', onlyWithoutToken, loginUser);
+router.get('/login', onlyWithoutToken, loginPage);
+router.patch('/change-name', checkToken, changeName);
+router.patch('/change-password', checkToken, changePassword);
 
 module.exports = router;

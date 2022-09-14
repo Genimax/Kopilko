@@ -135,14 +135,59 @@ const loginPage = asyncHandler(async (req, res) => {
 // @desc Get User Data
 // @route /users/me
 // @access Private
-const getMe = asyncHandler(async (req, res) => {
-  const { _id, login, name } = await User.findById(req.user.id);
 
-  res.status(200).json({
-    id: _id,
-    login,
-    name,
-  });
+// @desc Name Changing
+// @route PATCH /users/change-name
+// @access Private
+const changeName = asyncHandler(async (req, res) => {
+  const update = req.body;
+  if (
+    update.name.length > 50 ||
+    !/^[A-ZА-Я ]+$/i.test(update.name) ||
+    !update.name.trim().length
+  ) {
+    res.status(400);
+    throw new Error('Новое имя не удовлетворяет требованиям');
+  } else {
+    const id = req.user.id;
+
+    const result = await User.findByIdAndUpdate(id, update, { new: true });
+    res.status(200).json(result);
+  }
+});
+
+// @desc Name Changing
+// @route PATCH /users/change-name
+// @access Private
+const changePassword = asyncHandler(async (req, res) => {
+  const { oldPassword, newPassword1, newPassword2 } = req.body;
+  const id = req.user.id;
+
+  const user = await User.findById(id);
+  if (
+    oldPassword &&
+    newPassword1 &&
+    newPassword1 === newPassword2 &&
+    !(newPassword1.length < 5) &&
+    !(newPassword1.length > 64) &&
+    /[a-z]+/i.test(newPassword1) &&
+    /[0-9]+/i.test(newPassword1) &&
+    (await bcrypt.compare(oldPassword, user.password))
+  ) {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword1, salt);
+    const result = await User.findByIdAndUpdate(
+      id,
+      { password: hashedPassword },
+      { new: true }
+    );
+    res.status(200).json(result);
+  } else {
+    res.status(400);
+    throw new Error(
+      'Неверный текущий пароль, либо новые пароли не удовлетворяют требованиям.'
+    );
+  }
 });
 
 module.exports = {
@@ -150,5 +195,6 @@ module.exports = {
   registerUser,
   loginUser,
   loginPage,
-  getMe,
+  changeName,
+  changePassword,
 };

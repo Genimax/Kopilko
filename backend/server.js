@@ -5,7 +5,7 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 const cookieParser = require('cookie-parser');
-const { checkToken, onlyWithoutToken } = require('./middleware/cookieJWTAuth');
+const { checkToken } = require('./middleware/cookieJWTAuth');
 
 connectDB();
 
@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/dashboard', checkToken, require('./routes/dashboardRoutes'));
 app.use('/user/incomes', checkToken, require('./routes/incomesRoutes'));
-app.use('/users', onlyWithoutToken, require('./routes/userRoutes'));
+app.use('/users', require('./routes/userRoutes'));
 
 app.use(errorHandler);
 

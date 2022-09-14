@@ -136,6 +136,7 @@ const loginPage = asyncHandler(async (req, res) => {
 // @access Private
 const changeName = asyncHandler(async (req, res) => {
   const update = req.body;
+  update.name = update.name.trim();
   if (
     update.name.length > 50 ||
     !/^[A-ZА-Я ]+$/i.test(update.name) ||

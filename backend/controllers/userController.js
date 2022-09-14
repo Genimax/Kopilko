@@ -2,10 +2,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
-const {
-  generateToken,
-  onlyWithoutToken,
-} = require('../middleware/cookieJWTAuth.js');
+const { generateToken } = require('../middleware/cookieJWTAuth.js');
 const User = require('../models/userModel');
 
 // @desc Registration Page
@@ -19,7 +16,6 @@ const registrationPage = asyncHandler(async (req, res) => {
 // @route /users/registration
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  onlyWithoutToken(req, res, next);
   const { login, name, password1, password2 } = req.body;
 
   // Check if user exists
@@ -99,7 +95,6 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route POST /users/login
 // @access Public
 const loginUser = asyncHandler(async (req, res) => {
-  onlyWithoutToken(req, res);
   let { login, password } = req.body;
   login = login.toLowerCase();
 

@@ -168,6 +168,7 @@ const changePassword = asyncHandler(async (req, res) => {
     !(newPassword1.length > 64) &&
     /[a-z]+/i.test(newPassword1) &&
     /[0-9]+/i.test(newPassword1) &&
+    !/[ ]+/i.test(newPassword1) &&
     (await bcrypt.compare(oldPassword, user.password))
   ) {
     const salt = await bcrypt.genSalt(10);

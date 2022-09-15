@@ -156,7 +156,8 @@ const passwordValidation = function (passwordCalledNumber) {
       password1.length > 64 ||
       !/[a-z]+/i.test(password1) ||
       !/[0-9]+/i.test(password1) ||
-      /[а-я]+/i.test(password1))
+      /[а-я]+/i.test(password1) ||
+      /[ ]+/i.test(password2))
   ) {
     hidePasswordIcon1.classList.add('hide-item');
     hidePasswordIconWhite1.classList.remove('hide-item');
@@ -169,12 +170,13 @@ const passwordValidation = function (passwordCalledNumber) {
   }
 
   if (
-    password2 &&
-    (password2.length < 5 ||
-      password2.length > 64 ||
-      !/[a-z]+/i.test(password2) ||
-      !/[0-9]+/i.test(password2) ||
-      /[а-я]+/i.test(password2))
+    (password2 &&
+      (password2.length < 5 ||
+        password2.length > 64 ||
+        !/[a-z]+/i.test(password2) ||
+        !/[0-9]+/i.test(password2) ||
+        /[а-я]+/i.test(password2))) ||
+    /[ ]+/i.test(password2)
   ) {
     hidePasswordIcon2.classList.add('hide-item');
     hidePasswordIconWhite2.classList.remove('hide-item');

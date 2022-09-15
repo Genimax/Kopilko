@@ -47,8 +47,6 @@ const loginValidation = async function () {
   const url = '/users/registration';
 
   if (login) {
-    loginField.value = login.replaceAll(' ', '');
-    login = login.replaceAll(' ', '');
     if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
       loginField.classList.add('wrong-credentials');
       msgMain.classList.add('incorrect-alert');
@@ -230,10 +228,10 @@ const formListener = function () {
   const password1 = document.getElementById(`password-auth-input-1`);
   const password2 = document.getElementById(`password-auth-input-2`);
 
-  loginField.addEventListener('change', buttonValidation);
-  nameField.addEventListener('change', buttonValidation);
-  password1.addEventListener('change', buttonValidation);
-  password2.addEventListener('change', buttonValidation);
+  loginField.addEventListener('input', buttonValidation);
+  nameField.addEventListener('input', buttonValidation);
+  password1.addEventListener('input', buttonValidation);
+  password2.addEventListener('input', buttonValidation);
 };
 
 formListener();

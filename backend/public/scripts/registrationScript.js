@@ -46,7 +46,7 @@ const loginValidation = async function () {
   // TODO
   const url = '/users/registration';
 
-  if (login) {
+  if (login || login === '') {
     if (login.length > 50 || login.length < 5 || !/^[0-9A-Z]+$/i.test(login)) {
       loginField.classList.add('wrong-credentials');
       msgMain.classList.add('incorrect-alert');
@@ -82,15 +82,25 @@ const loginValidation = async function () {
 };
 
 const nameValidation = function () {
+  const loginField = document.getElementById('login');
+  let login = loginField.value;
+  const msgLogin = document.getElementById('login_reqs');
+
   const nameField = document.getElementById('name_field');
   nameValue = nameField.value;
   msgMain = document.getElementById('name_reqs');
 
+  if (!loginField.value || login === '') {
+    msgLogin.classList.add('incorrect-alert');
+    loginField.classList.add('wrong-credentials');
+  }
+
   if (
-    nameValue &&
-    (nameValue.length > 50 ||
-      !/^[A-ZА-Я ]+$/i.test(nameValue) ||
-      !nameValue.trim().length)
+    !nameValue ||
+    nameValue === '' ||
+    nameValue.length > 50 ||
+    !/^[A-ZА-Я ]+$/i.test(nameValue) ||
+    !nameValue.trim().length
   ) {
     nameField.classList.add('wrong-credentials');
     msgMain.classList.add('incorrect-alert');
@@ -101,6 +111,20 @@ const nameValidation = function () {
 };
 
 const passwordValidation = function (passwordCalledNumber) {
+  const nameField = document.getElementById('name_field');
+  const msgName = document.getElementById('name_reqs');
+  const loginField = document.getElementById('login');
+  const msgLogin = document.getElementById('login_reqs');
+
+  if (!loginField.value || login === '') {
+    msgLogin.classList.add('incorrect-alert');
+    loginField.classList.add('wrong-credentials');
+  }
+
+  if (!nameField.value || nameField.value === '') {
+    msgName.classList.add('incorrect-alert');
+    nameField.classList.add('wrong-credentials');
+  }
   const msgReqs = document.getElementById('password_reqs');
   const msgRepeat = document.getElementById('password_repeat_reqs');
 

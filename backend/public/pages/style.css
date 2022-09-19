@@ -19,14 +19,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #2d3f55;
 }
 
 .secondary-container {
   width: 35%;
   display: block;
   transition: width 1s ease-in-out;
-  background: linear-gradient(-135deg, #2d3f55, #65bf92);
+  background: linear-gradient(135deg, #2d3f55, #65bf92);
   text-align: center;
+}
+
+.registration-secondary-container {
+  background: linear-gradient(-135deg, #2d3f55, #65bf92);
 }
 
 .secondary-container:hover {
@@ -73,7 +78,7 @@ body {
   margin: 0;
   font-size: 2em;
   font-weight: bold;
-  color: #2d3f55;
+  color: #ffffff;
 }
 
 .auth-subheader {
@@ -82,6 +87,7 @@ body {
   width: 50%;
   text-align: center;
   font-weight: medium;
+  color: #ffffff;
 }
 
 .login-container {
@@ -116,6 +122,7 @@ body {
   background-color: #e5f4ed;
   border-radius: 0.25rem;
   text-indent: 0.35rem;
+  color: #2d3f55;
 }
 
 .login-input:focus {
@@ -284,7 +291,7 @@ body {
   width: 15rem;
   font-size: 0.5rem;
   font-weight: medium;
-  color: #7fcaa4;
+  color: white;
   text-align: left;
 }
 

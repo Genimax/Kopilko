@@ -9,6 +9,7 @@ const {
   loginPage,
   changeName,
   changePassword,
+  deleteUser,
 } = require('../controllers/userController');
 
 router.post('/registration', onlyWithoutToken, registerUser);
@@ -17,5 +18,6 @@ router.post('/login', onlyWithoutToken, loginUser);
 router.get('/login', onlyWithoutToken, loginPage);
 router.patch('/change-name', checkToken, changeName);
 router.patch('/change-password', checkToken, changePassword);
+router.delete('/', checkToken, deleteUser);
 
 module.exports = router;

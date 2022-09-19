@@ -187,6 +187,19 @@ const changePassword = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Delete User
+// @route DELETE /users/
+// @access Private
+const deleteUser = asyncHandler(async (req, res) => {
+  const id = req.user.id;
+
+  const user = await User.findByIdAndDelete(id);
+  if (user) {
+    res.clearCookie('token');
+    return res.redirect('/users/login');
+  } else throw new Error('No such User');
+});
+
 module.exports = {
   registrationPage,
   registerUser,
@@ -194,4 +207,5 @@ module.exports = {
   loginPage,
   changeName,
   changePassword,
+  deleteUser,
 };

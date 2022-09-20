@@ -55,10 +55,26 @@
       </a>
     </section>
 
+    <module class="exit hidden">
+      <div class="window-exit">
+        <p class="exit-question">Вы уверены, что хотите выйти?</p>
+        <div class="exit-choose">
+          <button class="exit-btn-choose btn-yes" id="exit_ok">Выйти</button>
+          <button class="exit-btn-choose btn-no" id="exit_cancel">
+            Отмена
+          </button>
+        </div>
+      </div>
+    </module>
+    <script src="../scripts/logoutScript.js"></script>
     <script>
       const menu = document.getElementById('side_menu');
       const menuCallerMain = document.querySelector('.dashes-icon');
-      const menuCallerSide = document.querySelector('.burger-dashes');
+      const menuCallerSide = document.querySelector('.burger-mini-button');
+      const exitButton = document.querySelector('.logout');
+      const exitWindow = document.querySelector('.exit');
+      const exitCancel = document.getElementById('exit_cancel');
+      const exitOk = document.getElementById('exit_ok');
 
       menuCallerMain.addEventListener('click', () => {
         menu.classList.toggle('slide-off');
@@ -67,6 +83,16 @@
       menuCallerSide.addEventListener('click', () => {
         menu.classList.toggle('slide-off');
       });
+
+      exitButton.addEventListener('click', () => {
+        exitWindow.classList.remove('hidden');
+      });
+
+      exitCancel.addEventListener('click', () => {
+        exitWindow.classList.add('hidden');
+      });
+
+      exitOk.addEventListener('click', deleteAuth);
     </script>
   </body>
 </html>

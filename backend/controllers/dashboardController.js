@@ -5,7 +5,7 @@ const path = require('path');
 // @route   GET /dashboard
 // @access  PRIVATE
 const renderPage = asyncHandler(async (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/pages/dashboard.html'));
+  res.render(path.join(__dirname, '../public/pages/dashboard'));
 });
 
 module.exports = { renderPage };

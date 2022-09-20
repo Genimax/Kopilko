@@ -75,6 +75,7 @@ a {
 }
 
 .burger-menu {
+  left: -15rem;
   margin: 0;
   padding: 0;
   display: flex;
@@ -85,7 +86,6 @@ a {
   width: 14.1rem;
   background-color: #2d3f55;
   border-top-right-radius: 0.75rem;
-  transform: translateX(-15rem);
   transition: transform 0.5s ease-in-out;
 }
 
@@ -161,6 +161,8 @@ nav {
 }
 
 button.logout {
+  position: absolute;
+  bottom: 5.1rem;
   margin-top: 26.2rem;
   align-self: center;
   width: 7.35rem;
@@ -170,6 +172,15 @@ button.logout {
   color: white;
   background-color: #0f151c;
   border: none;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   transition: all 0.5s ease-out;
 }
 
@@ -182,5 +193,83 @@ button.logout:active {
 }
 
 .slide-off {
-  transform: translateX(0rem);
+  transform: translateX(15rem);
+}
+
+module {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0f151c;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  transition: opacity 1s ease-in-out;
+}
+
+.window-exit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 10rem;
+  background-color: #2d3f55;
+  border-radius: 1rem;
+}
+
+.exit-question {
+  color: white;
+  width: 11.25rem;
+  font-size: 1.2rem;
+  text-align: center;
+  justify-self: center;
+  margin-bottom: 1.45rem;
+}
+
+.exit-btn-choose {
+  border: none;
+  background-color: #e84a58;
+  width: 7.5rem;
+  height: 1.5rem;
+  color: white;
+  border-radius: 1.5rem;
+  margin: 0 0.75rem;
+  font-size: 0.75rem;
+  box-shadow: none;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: background-color 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.exit-btn-choose:hover {
+  cursor: pointer;
+  background-color: red;
+}
+
+.exit-btn-choose:active {
+  transform: scale(0.98);
+}
+
+.btn-no {
+  background-color: #65bf92;
+  transition: background-color 0.3s ease-out;
+}
+
+.btn-no:hover {
+  background-color: #2b6749;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
 }

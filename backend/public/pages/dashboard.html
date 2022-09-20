@@ -1,19 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="/pages/dashboard.css" />
+    <link rel="icon" href="/images/vector-logo.ico" />
+    <title>Kopilko Dashboard</title>
   </head>
   <body>
-    <img
-      src="https://i.ytimg.com/vi/_kgWVBjAqDA/maxresdefault.jpg?7857057827"
-      alt="Steve Buscemi"
-    />
-    <form action="/dashboard/logout" method="post">
-      <button name="logout" onclick="deleteAuth()" type="button">Выйти</button>
-    </form>
-    <script src="../scripts/logoutScript.js"></script>
+    <div class="burger-mini-button">
+      <img class="burger-dashes" src="../images/burger-dashes.svg" alt="menu" />
+    </div>
+
+    <menu class="burger-menu" id="side_menu">
+      <div class="logo-header logo-side-header">
+        <section class="menu-header-section">
+          <a href="/dashboard">
+            <div class="logo-section logo-side-section">
+              <img
+                class="kopilko-logo-img"
+                src="../images/vector-logo.svg"
+                alt="logo"
+              />
+              <p class="kopilko-logo-text">KOPILKO</p>
+            </div>
+          </a>
+          <div class="burger-dashes-header">
+            <img
+              class="dashes-icon"
+              src="../images/burger-dashes.svg"
+              alt="menu"
+            />
+          </div>
+        </section>
+        <nav>
+          <div class="navigation-string"><p>Главная</p></div>
+          <div class="navigation-string"><p>Профиль</p></div>
+        </nav>
+      </div>
+      <button class="logout">Выйти</button>
+    </menu>
+
+    <section>
+      <a href="/dashboard">
+        <div class="logo-section">
+          <img
+            class="kopilko-logo-img"
+            src="../images/vector-logo.svg"
+            alt="logo"
+          />
+          <p class="kopilko-logo-text">KOPILKO</p>
+        </div>
+      </a>
+    </section>
+
+    <script>
+      const menu = document.getElementById('side_menu');
+      const menuCallerMain = document.querySelector('.dashes-icon');
+      const menuCallerSide = document.querySelector('.burger-dashes');
+
+      menuCallerMain.addEventListener('click', () => {
+        menu.classList.toggle('slide-off');
+      });
+
+      menuCallerSide.addEventListener('click', () => {
+        menu.classList.toggle('slide-off');
+      });
+    </script>
   </body>
 </html>

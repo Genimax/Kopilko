@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/pages/dashboard.css" />
     <link rel="icon" href="/images/vector-logo.ico" />
-    <title>Kopilko Dashboard</title>
+    <title>Главная</title>
   </head>
   <body>
     <div class="burger-mini-button">
@@ -16,16 +16,15 @@
     <menu class="burger-menu" id="side_menu">
       <div class="logo-header logo-side-header">
         <section class="menu-header-section">
-          <a href="/dashboard">
-            <div class="logo-section logo-side-section">
-              <img
-                class="kopilko-logo-img"
-                src="../images/vector-logo.svg"
-                alt="logo"
-              />
-              <p class="kopilko-logo-text">KOPILKO</p>
-            </div>
-          </a>
+          <div class="logo-section logo-side-section">
+            <img
+              class="kopilko-logo-img"
+              src="../images/vector-logo.svg"
+              alt="logo"
+            />
+            <p class="kopilko-logo-text">KOPILKO</p>
+          </div>
+
           <div class="burger-dashes-header">
             <img
               class="dashes-icon"
@@ -35,8 +34,18 @@
           </div>
         </section>
         <nav>
-          <div class="navigation-string"><p>Главная</p></div>
-          <div class="navigation-string"><p>Профиль</p></div>
+          <div
+            class="navigation-string"
+            onclick="window.location.replace('/dashboard')"
+          >
+            <p>Главная</p>
+          </div>
+          <div
+            class="navigation-string"
+            onclick="window.location.replace('/profile')"
+          >
+            <p>Профиль</p>
+          </div>
         </nav>
       </div>
       <button class="logout">Выйти</button>
@@ -67,32 +76,6 @@
       </div>
     </module>
     <script src="../scripts/logoutScript.js"></script>
-    <script>
-      const menu = document.getElementById('side_menu');
-      const menuCallerMain = document.querySelector('.dashes-icon');
-      const menuCallerSide = document.querySelector('.burger-mini-button');
-      const exitButton = document.querySelector('.logout');
-      const exitWindow = document.querySelector('.exit');
-      const exitCancel = document.getElementById('exit_cancel');
-      const exitOk = document.getElementById('exit_ok');
-
-      menuCallerMain.addEventListener('click', () => {
-        menu.classList.toggle('slide-off');
-      });
-
-      menuCallerSide.addEventListener('click', () => {
-        menu.classList.toggle('slide-off');
-      });
-
-      exitButton.addEventListener('click', () => {
-        exitWindow.classList.remove('hidden');
-      });
-
-      exitCancel.addEventListener('click', () => {
-        exitWindow.classList.add('hidden');
-      });
-
-      exitOk.addEventListener('click', deleteAuth);
-    </script>
+    <script src="../scripts/burgerBar.js"></script>
   </body>
 </html>

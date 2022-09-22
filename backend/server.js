@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/dashboard', checkToken, require('./routes/dashboardRoutes'));
+app.use('/profile', checkToken, require('./routes/profileRoute'));
 app.use('/user/incomes', checkToken, require('./routes/incomesRoutes'));
 app.use('/users', require('./routes/userRoutes'));
 

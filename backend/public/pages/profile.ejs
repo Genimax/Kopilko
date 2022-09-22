@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/pages/dashboard.css" />
+    <link rel="stylesheet" href="/pages/profile.css" />
+    <link rel="icon" href="/images/vector-logo.ico" />
+    <title>Профиль</title>
+  </head>
+  <body>
+    <div class="burger-mini-button">
+      <img class="burger-dashes" src="../images/burger-dashes.svg" alt="menu" />
+    </div>
+
+    <section class="profile-window">
+      <div class="profile-block">
+        <div class="profile-header">
+          <image class="profile-img" src="../images/Vector-login.svg"></image>
+          <p class="login-header">
+            Логин:<span class="user-login"><%- login %></span>
+          </p>
+        </div>
+        <div class="label-section">
+          <div class="label-subsection">
+            <p class="name-label">Имя:</p>
+            <div class="name-field">
+              <p class="name"><%- name %></p>
+              <img class="pencil" id="name_pencil" src="../images/pencil.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="label-section">
+          <div class="label-subsection">
+            <p class="password-label">Пароль:</p>
+            <div class="password-field">
+              <p class="password">*****</p>
+              <img
+                class="pencil"
+                id="password_pencil"
+                src="../images/pencil.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <button class="btn-delete-user">Удалить пользователя</button>
+      </div>
+    </section>
+
+    <menu class="burger-menu" id="side_menu">
+      <div class="logo-header logo-side-header">
+        <section class="menu-header-section">
+          <div class="logo-section logo-side-section">
+            <img
+              class="kopilko-logo-img"
+              src="../images/vector-logo.svg"
+              alt="logo"
+            />
+            <p class="kopilko-logo-text">KOPILKO</p>
+          </div>
+
+          <div class="burger-dashes-header">
+            <img
+              class="dashes-icon"
+              src="../images/burger-dashes.svg"
+              alt="menu"
+            />
+          </div>
+        </section>
+        <nav>
+          <div
+            class="navigation-string"
+            onclick="window.location.replace('/dashboard')"
+          >
+            <p>Главная</p>
+          </div>
+          <div
+            class="navigation-string"
+            onclick="window.location.replace('/profile')"
+          >
+            <p>Профиль</p>
+          </div>
+        </nav>
+      </div>
+      <button class="logout">Выйти</button>
+    </menu>
+
+    <section>
+      <a href="/dashboard">
+        <div class="logo-section">
+          <img
+            class="kopilko-logo-img"
+            src="../images/vector-logo.svg"
+            alt="logo"
+          />
+          <p class="kopilko-logo-text">KOPILKO</p>
+        </div>
+      </a>
+    </section>
+
+    <module class="exit hidden">
+      <div class="window-exit">
+        <p class="exit-question">Вы уверены, что хотите выйти?</p>
+        <div class="exit-choose">
+          <button class="exit-btn-choose btn-yes" id="exit_ok">Выйти</button>
+          <button class="exit-btn-choose btn-no" id="exit_cancel">
+            Отмена
+          </button>
+        </div>
+      </div>
+    </module>
+
+    <module class="change-name-module hidden">
+      <div class="window-change-name">
+        <form
+          class="window-change-name"
+          action="/users/change-name/"
+          method="post"
+        >
+          <p class="change-name-title">Имя пользователя</p>
+          <input
+            required
+            autofocus
+            class="input-name"
+            type="text"
+            name="name"
+            placeholder="Введите новое имя"
+          />
+          <div class="name-choose">
+            <button
+              class="name-btn-choose btn-save"
+              type="submit"
+              disabled="true"
+            >
+              Сохранить
+            </button>
+            <button
+              class="name-btn-choose btn-cancel"
+              id="name_cancel"
+              type="button"
+            >
+              Отмена
+            </button>
+          </div>
+        </form>
+      </div>
+    </module>
+    <script src="../scripts/logoutScript.js"></script>
+    <script src="../scripts/burgerBar.js"></script>
+    <script>
+      const saveBtn = document.querySelector('.btn-save');
+      const cancelBtn = document.querySelector('.btn-cancel');
+      const inputName = document.querySelector('.input-name');
+      const changeNameModule = document.querySelector('.change-name-module');
+      const namePencil = document.getElementById('name_pencil');
+
+      inputName.addEventListener('input', () => {
+        if (
+          inputName.value.length > 50 ||
+          !/^[A-ZА-Я ]+$/i.test(inputName.value)
+        ) {
+          saveBtn.disabled = true;
+        } else saveBtn.disabled = false;
+      });
+
+      cancelBtn.addEventListener('click', () => {
+        changeNameModule.classList.add('hidden');
+      });
+
+      namePencil.addEventListener('click', () => {
+        changeNameModule.classList.remove('hidden');
+      });
+    </script>
+  </body>
+</html>

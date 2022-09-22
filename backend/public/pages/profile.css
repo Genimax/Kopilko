@@ -1,0 +1,211 @@
+.profile-window {
+  padding-top: 7.5rem;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  height: 13.55rem;
+  pointer-events: none;
+}
+
+.profile-block {
+  pointer-events: all;
+  width: 48.3rem;
+  height: 13.55rem;
+  background-color: #2d3f55;
+  border-radius: 1rem;
+}
+
+.profile-header {
+  display: flex;
+  padding-top: 1.1rem;
+  padding-left: 3.3rem;
+}
+
+.profile-img {
+  width: 1rem;
+}
+
+.login-header {
+  padding-left: 0.35rem;
+  font-size: 1rem;
+}
+
+.user-login {
+  padding-left: 1.2rem;
+}
+
+.label-section {
+  display: flex;
+  margin-top: 1.1rem;
+  margin-left: 2.25rem;
+  width: 43.75rem;
+  height: 2.9rem;
+  background-color: #435e7e;
+  border-radius: 0.5rem;
+  margin-bottom: 1.05rem;
+}
+
+.label-subsection {
+  align-self: center;
+  justify-items: center;
+  align-content: center;
+  position: relative;
+  display: flex;
+}
+
+.name-label {
+  padding-left: 19.85rem;
+  margin-right: 0.85rem;
+  font-size: 1.2rem;
+}
+.password-label {
+  padding-left: 17.95rem;
+  font-size: 1.2rem;
+  margin-right: 0.9rem;
+  align-content: center;
+}
+
+.name-field {
+  display: flex;
+  align-items: center;
+  width: 7.75rem;
+  height: 1.6rem;
+  border-radius: 0.4rem;
+  background-color: #f4f4f4;
+  justify-content: flex-start;
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  width: 7.75rem;
+  height: 1.6rem;
+  border-radius: 0.4rem;
+  background-color: #f4f4f4;
+  justify-content: flex-start;
+}
+
+p.name {
+  position: absolute;
+  text-align: center;
+  overflow-x: hidden;
+  color: #0f151c;
+  padding-left: 1rem;
+  width: 5.3rem;
+  height: 1.15rem;
+  overflow: hidden;
+}
+
+p.password {
+  position: absolute;
+  color: #0f151c;
+  font-weight: 800;
+  text-align: center;
+  padding-top: 0.9rem;
+  padding-left: 1rem;
+}
+.pencil {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 6.4rem;
+  border-radius: 0.2rem;
+  transition: background-color 0.1s ease-out;
+}
+
+.pencil:hover {
+  cursor: pointer;
+  background-color: #c5c4c1;
+}
+
+.btn-delete-user {
+  font-size: 0.6rem;
+  width: 8.5rem;
+  height: 1.5rem;
+  margin-left: 37.5rem;
+  border-radius: 1.5rem;
+  background-color: #a0a0a0;
+  border: none;
+  color: white;
+  text-align: center;
+  transition: background-color 0.3s ease-out;
+}
+
+.btn-delete-user:hover {
+  cursor: pointer;
+  background-color: #2b6749;
+}
+
+.window-change-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  height: 15rem;
+  background-color: #2d3f55;
+  border-radius: 1rem;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.change-name-title {
+  font-size: 1.2rem;
+  padding-top: 2.85rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.input-name {
+  font-size: 0.6rem;
+  width: 15rem;
+  height: 1.5rem;
+  border-radius: 0.4rem;
+  border: none;
+  text-indent: 0.35rem;
+  margin-bottom: 2.5rem;
+}
+
+.input-name::placeholder {
+  vertical-align: middle;
+  font-size: 0.6rem;
+  color: #a0a0a0;
+}
+
+.input-name:focus {
+  outline: none;
+}
+
+.name-choose {
+  display: flex;
+  justify-content: center;
+}
+
+.name-btn-choose {
+  font-size: 0.6rem;
+  width: 7.5rem;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+  border: none;
+  margin: 0 0.75rem;
+  color: white;
+  transition: background-color 0.3s ease-out;
+  cursor: pointer;
+}
+
+.btn-save {
+  background-color: #65bf92;
+}
+
+.btn-cancel {
+  background-color: #a0a0a0;
+}
+
+.name-btn-choose:hover {
+  background-color: #2b6749;
+}
+
+.btn-save:disabled {
+  background-color: #c8c8c8;
+  cursor: auto;
+}

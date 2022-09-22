@@ -148,12 +148,12 @@ const changeName = asyncHandler(async (req, res) => {
     const id = req.user.id;
 
     const result = await User.findByIdAndUpdate(id, update, { new: true });
-    res.status(200).json(result);
+    res.status(200).redirect('/profile');
   }
 });
 
-// @desc Name Changing
-// @route PATCH /users/change-name
+// @desc Password Changing
+// @route PATCH /users/change-password
 // @access Private
 const changePassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword1, newPassword2 } = req.body;

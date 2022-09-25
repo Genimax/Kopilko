@@ -111,7 +111,7 @@
       </div>
     </module>
 
-    <module class="change-name-module hidden">
+    <module class="change-name-module">
       <div class="window-change-name">
         <form
           class="window-change-name"
@@ -127,6 +127,10 @@
             name="name"
             placeholder="Введите новое имя"
           />
+          <p class="name-requirements">
+            - Имя может быть длиной до 50-ти символов и содержит только слова,
+            разделённые пробелами
+          </p>
           <div class="name-choose">
             <button
               class="name-btn-choose btn-save"
@@ -146,31 +150,143 @@
         </form>
       </div>
     </module>
+
+    <module class="change-password-module hidden">
+      <div class="window-change-password">
+        <form
+          class="window-change-password"
+          action="/users/change-password/"
+          method="post"
+        >
+          <p class="change-password-title">Смена пароля</p>
+          <div class="password-input-container">
+            <input
+              required
+              class="input-password password-input-1"
+              type="password"
+              name="oldPassword"
+              autocomplete="on"
+              placeholder="Введите старый пароль"
+              autofocus
+            />
+            <img
+              class="show-password show-password-1"
+              src="../images/Hidden-password.svg"
+              alt="show-password-button"
+              onclick="showPassword(1)"
+            />
+            <img
+              class="show-password show-password-1 hidden"
+              src="../images/Hidden-password-white.svg"
+              alt="show-password-button"
+              onclick="showPassword(1)"
+            />
+          </div>
+          <div class="password-input-container">
+            <input
+              required
+              class="input-password password-input-2"
+              type="password"
+              name="newPassword1"
+              autocomplete="on"
+              placeholder="Введите новый пароль"
+            />
+            <img
+              class="show-password show-password-2"
+              src="../images/Hidden-password.svg"
+              alt="show-password-button"
+              onclick="showPassword(2)"
+            />
+            <img
+              class="show-password show-password-2 hidden"
+              src="../images/Hidden-password-white.svg"
+              alt="show-password-button"
+              onclick="showPassword(2)"
+            />
+          </div>
+          <div class="repeat-password-input-container">
+            <input
+              required
+              class="input-password password-input-3"
+              type="password"
+              name="newPassword2"
+              autocomplete="on"
+              placeholder="Повторите новый пароль"
+            />
+            <img
+              class="show-password show-password-3"
+              src="../images/Hidden-password.svg"
+              alt="show-password-button"
+              onclick="showPassword(3)"
+            />
+            <img
+              class="show-password show-password-3 hidden"
+              src="../images/Hidden-password-white.svg"
+              alt="show-password-button"
+              onclick="showPassword(3)"
+            />
+          </div>
+          <div class="requirements-password-container">
+            <p class="requiremets-text" id="password_reqs_correct_old">
+              - Старый пароль должен быть введён верно
+            </p>
+            <p class="requiremets-text" id="password_reqs_number">
+              - Пароль должен содержать от 5-ти до 64-х символов
+            </p>
+            <p class="requiremets-text" id="password_reqs_in">
+              - Пароль должен содержать цифры и латиницу
+            </p>
+            <p class="requiremets-text" id="password_reqs_equal">
+              - Введённые пароли должны совпадать
+            </p>
+          </div>
+          <div class="password-choose">
+            <button
+              class="password-btn-choose btn-save-password"
+              type="submit"
+              disabled="true"
+            >
+              Сменить пароль
+            </button>
+            <button
+              class="password-btn-choose btn-cancel-password"
+              id="password_cancel"
+              type="button"
+            >
+              Отмена
+            </button>
+          </div>
+        </form>
+      </div>
+    </module>
+    <%- psswrdSavedModule %>
+    <module class="delete-user-module hidden">
+      <div class="delete-user-pack-form">
+        <form
+          class="window-delete-user"
+          action="/users/delete-user/"
+          method="post"
+        >
+          <p class="delete-user-title">
+            Вы уверены, что хотите удалить пользователя?
+          </p>
+          <div class="delete-choose">
+            <button class="delete-btn-choose btn-delete" type="submit">
+              Удалить
+            </button>
+            <button
+              class="delete-btn-choose btn-cancel-delete"
+              id="delete_cancel"
+              type="button"
+            >
+              Отмена
+            </button>
+          </div>
+        </form>
+      </div>
+    </module>
     <script src="../scripts/logoutScript.js"></script>
     <script src="../scripts/burgerBar.js"></script>
-    <script>
-      const saveBtn = document.querySelector('.btn-save');
-      const cancelBtn = document.querySelector('.btn-cancel');
-      const inputName = document.querySelector('.input-name');
-      const changeNameModule = document.querySelector('.change-name-module');
-      const namePencil = document.getElementById('name_pencil');
-
-      inputName.addEventListener('input', () => {
-        if (
-          inputName.value.length > 50 ||
-          !/^[A-ZА-Я ]+$/i.test(inputName.value)
-        ) {
-          saveBtn.disabled = true;
-        } else saveBtn.disabled = false;
-      });
-
-      cancelBtn.addEventListener('click', () => {
-        changeNameModule.classList.add('hidden');
-      });
-
-      namePencil.addEventListener('click', () => {
-        changeNameModule.classList.remove('hidden');
-      });
-    </script>
+    <script src="../scripts/profileChanging.js"></script>
   </body>
 </html>

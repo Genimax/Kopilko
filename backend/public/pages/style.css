@@ -227,11 +227,13 @@ body {
 
 .login-button:hover {
   background-color: #2b6749;
+  cursor: pointer;
 }
 
 .login-button:disabled {
   color: white;
   background-color: #dedede;
+  cursor: auto;
 }
 
 .secondary-section-text-head {
@@ -267,6 +269,7 @@ body {
 }
 
 .secondary-auth-button:hover {
+  cursor: pointer;
   color: #c8c8c8;
   border-color: #c8c8c8;
 }

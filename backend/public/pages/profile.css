@@ -97,6 +97,7 @@ p.name {
   width: 5.3rem;
   height: 1.15rem;
   overflow: hidden;
+  user-select: none;
 }
 
 p.password {
@@ -106,6 +107,7 @@ p.password {
   text-align: center;
   padding-top: 0.9rem;
   padding-left: 1rem;
+  user-select: none;
 }
 .pencil {
   width: 1rem;
@@ -163,7 +165,13 @@ p.password {
   border-radius: 0.4rem;
   border: none;
   text-indent: 0.35rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.name-requirements {
+  width: 15rem;
+  font-size: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .input-name::placeholder {
@@ -208,4 +216,202 @@ p.password {
 .btn-save:disabled {
   background-color: #c8c8c8;
   cursor: auto;
+}
+
+.window-change-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  height: 26.5rem;
+  background-color: #2d3f55;
+  border-radius: 1rem;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.change-password-title {
+  padding-top: 2.85rem;
+  font-size: 1.2rem;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.4rem;
+  width: 15rem;
+  height: 1.5rem;
+}
+
+.input-password {
+  display: flex;
+  justify-self: middle;
+  width: 15rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  text-indent: 0.35rem;
+  font-size: 0.6rem;
+}
+
+.input-password::placeholder {
+  vertical-align: middle;
+  font-size: 0.6rem;
+  color: #a0a0a0;
+  align-self: center;
+  font-size: 0.6rem;
+  justify-self: center;
+}
+
+.field-error {
+  background-color: #f6b7bc;
+}
+
+.field-error::placeholder {
+  color: #505050;
+}
+
+.show-password {
+  position: absolute;
+  align-self: center;
+  vertical-align: middle;
+  right: 0.35rem;
+  width: 1rem;
+  cursor: pointer;
+}
+
+.show-password:active {
+  transform: scale(0.9);
+}
+
+.repeat-password-input-container {
+  position: relative;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-top: 0.9rem;
+  width: 15rem;
+  height: 1.5rem;
+}
+
+.input-password:focus {
+  outline: none;
+}
+
+.requirements-password-container {
+  justify-content: center;
+  padding-top: 1.75rem;
+  font-size: 0.6rem;
+  width: 15rem;
+  height: 6.3rem;
+}
+
+.requiremets-text {
+  padding: 0.3rem 0;
+}
+
+.red-requirement {
+  color: #e84a58;
+}
+
+.password-btn-choose {
+  font-size: 0.6rem;
+  margin-top: 1.75rem;
+  background-color: #a0a0a0;
+  color: white;
+  width: 7.5rem;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+  border: none;
+  margin: 1.75rem 0.5rem 0 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+}
+
+.btn-save-password {
+  background-color: #65bf92;
+  cursor: pointer;
+}
+
+.password-btn-choose:hover {
+  background-color: #2b6749;
+}
+
+.password-btn-choose:disabled {
+  background-color: #c8c8c8;
+  cursor: auto;
+}
+
+.window-password-saved {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 10rem;
+  background-color: #65bf92;
+  border-radius: 1rem;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.password-notification {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  width: 11.25rem;
+  text-align: center;
+}
+
+.cancel-button {
+  background-color: #2d3f55;
+  color: white;
+  font-size: 0.6rem;
+  width: 7.5rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 1.5rem;
+}
+
+.cancel-button:hover {
+  cursor: pointer;
+}
+
+.window-delete-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 10rem;
+  background-color: #2d3f55;
+  border-radius: 1rem;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.delete-user-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  width: 15rem;
+  text-align: center;
+}
+
+.delete-btn-choose {
+  background-color: #65bf92;
+  color: white;
+  font-size: 0.6rem;
+  width: 7.5rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 1.5rem;
+  margin: 0 0.375rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-delete {
+  background-color: #e84a58;
+}
+
+.delete-btn-choose:hover {
+  background-color: #2b6749;
+  cursor: pointer;
 }

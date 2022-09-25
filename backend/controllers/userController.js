@@ -178,7 +178,7 @@ const changePassword = asyncHandler(async (req, res) => {
       { password: hashedPassword },
       { new: true }
     );
-    res.status(200).json(result);
+    res.status(200).redirect('/profile/password-saved');
   } else {
     res.status(400);
     throw new Error(
@@ -188,7 +188,7 @@ const changePassword = asyncHandler(async (req, res) => {
 });
 
 // @desc Delete User
-// @route DELETE /users/
+// @route POST /users/delete-user
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
   const id = req.user.id;
@@ -200,6 +200,19 @@ const deleteUser = asyncHandler(async (req, res) => {
   } else throw new Error('No such User');
 });
 
+// @desc Password Validation
+// @route POST /users/validate-password
+// @access Private
+const passwordValidation = asyncHandler(async (req, res) => {
+  const id = req.user.id;
+
+  const user = await User.findById(id);
+  const validation = await bcrypt.compare(req.body.oldPassword, user.password);
+  if (!validation) {
+    res.status(201).json();
+  } else res.status(200).json();
+});
+
 module.exports = {
   registrationPage,
   registerUser,
@@ -208,4 +221,5 @@ module.exports = {
   changeName,
   changePassword,
   deleteUser,
+  passwordValidation,
 };

@@ -30,6 +30,7 @@ p {
   margin-left: 2.5rem;
   display: flex;
   height: 3.65rem;
+  user-select: none;
 }
 
 .kopilko-logo-img {

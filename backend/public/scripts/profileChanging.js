@@ -75,7 +75,7 @@ const passwordRequirementsListener = async function () {
     xhr.onload = () => {
       // Password is wrong
       if (xhr.status === 201 || xhr.status === 0) {
-        return validPassword;
+        return undefined;
       } else {
         validPassword = oldPassword.value;
         return validPassword;
@@ -96,7 +96,7 @@ const passwordRequirementsListener = async function () {
   });
 
   oldPassword.addEventListener('focusout', () => {
-    if (!checkPassword()) {
+    if (validPassword !== oldPassword.value) {
       fieldColorSwitch(1, 'password_reqs_correct_old', 'error');
     }
   });

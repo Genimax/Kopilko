@@ -352,14 +352,12 @@ body {
     font-size: 1.9vh;
     margin: 0;
     padding: 0;
-    overflow: hidden;
   }
   body {
     display: flex;
     flex-direction: column;
     justify-items: center;
     height: auto;
-    overflow: hidden;
   }
 
   .prime-container {

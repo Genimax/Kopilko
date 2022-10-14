@@ -11,8 +11,10 @@
 
 .profile-block {
   pointer-events: all;
+  display: flex;
+  flex-direction: column;
   width: 48.3rem;
-  height: 13.55rem;
+  height: 14.8rem;
   background-color: #2d3f55;
   border-radius: 1rem;
 }
@@ -416,4 +418,50 @@ p.password {
 .delete-btn-choose:hover {
   background-color: #2b6749;
   cursor: pointer;
+}
+
+@media screen and (max-width: 912px) {
+}
+
+@media screen and (max-width: 425px) {
+  .profile-block {
+    width: 100%;
+    border-radius: 0;
+    height: 15rem;
+  }
+
+  .label-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0.2rem 0 0.2rem 0;
+    border-radius: 0;
+  }
+
+  .label-subsection {
+    align-self: center;
+    width: auto;
+  }
+
+  .name-label {
+    padding-left: 2rem;
+  }
+  .password-label {
+    padding-left: 0;
+    align-content: center;
+  }
+
+  .profile-header {
+    align-self: center;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  .btn-delete-user {
+    scale: 1.2;
+    margin-top: 1.6rem;
+    margin-left: 0;
+    align-self: center;
+  }
 }

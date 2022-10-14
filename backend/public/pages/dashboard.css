@@ -274,3 +274,21 @@ module {
   transform: scale(0);
   opacity: 0;
 }
+
+@media screen and (max-width: 912px) {
+  html {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2vw;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  html {
+    font-family: 'Raleway', sans-serif;
+    font-size: 4vw;
+    margin: 0;
+    padding: 0;
+  }
+}

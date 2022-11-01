@@ -24,7 +24,6 @@ const loginValidation = async function () {
   const alert = document.getElementById('login_exists');
   const regButton = document.getElementById('reg_button');
 
-  // TODO
   const url = '/users/registration';
 
   if (login || login === '') {

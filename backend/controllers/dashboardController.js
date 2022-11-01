@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const path = require('path');
+const User = require('../models/userModel');
 
 // @desc    Render Dashboard For User
 // @route   GET /dashboard

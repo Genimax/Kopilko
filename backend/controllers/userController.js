@@ -71,6 +71,9 @@ const registerUser = asyncHandler(async (req, res) => {
     login: login.toLowerCase().replace(' ', ''),
     name: name.trim(),
     password: hashedPassword,
+    incomePerMonth: 0,
+    outcomesPerMonth: 0,
+    goals: 0,
   });
 
   if (user) {
@@ -126,10 +129,6 @@ const loginUser = asyncHandler(async (req, res) => {
 const loginPage = asyncHandler(async (req, res) => {
   res.sendFile(path.join(__dirname, '../public/pages/auth.html'));
 });
-
-// @desc Get User Data
-// @route /users/me
-// @access Private
 
 // @desc Name Changing
 // @route PATCH /users/change-name

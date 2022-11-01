@@ -11,6 +11,9 @@ const userSchema = mongoose.Schema(
     name: { type: String, required: [true, 'Пожалуйста, введите имя.'] },
 
     password: { type: String, required: [true, 'Пожалуйста, введите пароль.'] },
+    incomePerMonth: { type: Number },
+    outcomesPerMonth: { type: Object },
+    goals: { type: Object },
   },
   { timestamps: true }
 );

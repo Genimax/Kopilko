@@ -338,12 +338,54 @@ module {
 
 .label-number {
   padding-top: 1rem;
+  width: max-content;
+  align-self: center;
   text-align: center;
   font-size: 1.66rem;
   font-weight: 800;
   -webkit-font-feature-settings: 'lnum';
   -moz-font-feature-settings: 'lnum';
   font-feature-settings: 'lnum';
+}
+
+.need-tooltip {
+  position: relative;
+  cursor: help;
+  border-bottom: 0.15rem dotted rgba(255, 255, 255, 0.749);
+}
+
+.need-tooltip::before,
+.need-tooltip::after {
+  --scale: 0;
+  --tooltip-color: black;
+  position: absolute;
+  bottom: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(150%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: top center;
+}
+
+.need-tooltip::before {
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  width: max-content;
+  max-width: 100%;
+  background: var(--tooltip-color);
+}
+
+.need-tooltip:hover::before,
+.need-tooltip:hover::after {
+  --scale: 1;
+}
+
+.need-tooltip::after {
+  content: '';
+  border: 0.41rem solid transparent;
+  border-bottom-color: var(--tooltip-color);
 }
 
 .window-budget {

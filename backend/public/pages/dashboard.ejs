@@ -24,7 +24,13 @@
             alt="pencil-icon"
           />
         </div>
-        <p class="label-number" id="month_budget_number"><%- monthBudget %></p>
+        <p
+          class="<%- budgetClass%>"
+          id="month_budget_number"
+          data-tooltip="<%- monthBudgetTooltip %>"
+        >
+          <%- monthBudget %>
+        </p>
       </div>
       <div class="data-main-block">
         <div class="complex-label-block">

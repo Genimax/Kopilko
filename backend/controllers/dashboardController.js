@@ -26,6 +26,11 @@ const renderPage = asyncHandler(async (req, res) => {
   res.render(path.join(__dirname, '../public/pages/dashboard'), {
     monthBudget: numberConverter(user.incomePerMonth),
     monthBudgetInput: user.incomePerMonth,
+    monthBudgetTooltip: `${numberWithSpaces(user.incomePerMonth)} ₽`,
+    budgetClass:
+      user.incomePerMonth >= 100000000
+        ? 'label-number need-tooltip'
+        : 'label-number',
   });
 });
 

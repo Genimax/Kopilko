@@ -1,6 +1,3 @@
-// const token = JSON.parse(window.localStorage.getItem('token'));
-// if (token) window.location.replace('/');
-
 function passwordVisibility(password) {
   if (password) password = `-${password}`;
   const passwordAuthInput = document.getElementById(

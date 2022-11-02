@@ -323,8 +323,17 @@ module {
 }
 
 .edit-pencil {
-  padding-left: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  height: 1rem;
   width: 1rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  transition: transform 0.3s ease-out;
+}
+
+.edit-pencil:hover {
+  transform: rotate(15deg);
 }
 
 .label-number {
@@ -335,6 +344,93 @@ module {
   -webkit-font-feature-settings: 'lnum';
   -moz-font-feature-settings: 'lnum';
   font-feature-settings: 'lnum';
+}
+
+.window-budget {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  height: 12.5rem;
+  background-color: #2d3f55;
+  border-radius: 0.83rem;
+}
+
+.budget-module-text {
+  padding-top: 2.3rem;
+  margin-bottom: 1.16rem;
+  font-size: 1.66rem;
+  font-weight: 800;
+  align-self: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.input-block {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+#budget_input {
+  font-size: 1rem;
+  align-self: center;
+  width: 6.25rem;
+  height: 1.25rem;
+  border-radius: 0.2rem;
+  border: none;
+  text-align: center;
+  margin-bottom: 1.7rem;
+}
+
+#budget_input:focus {
+  outline: none;
+}
+
+#currency-label-budget {
+  position: absolute;
+  right: 8rem;
+}
+
+#budget_warning {
+  color: #e84a58;
+  font-size: 0.58rem;
+  position: absolute;
+  margin-top: 7.3rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.budget-choose {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.budget-btn-choose {
+  width: 8.3rem;
+  height: 1.66rem;
+  background-color: #65bf92;
+  border: none;
+  border-radius: 1.25rem;
+  font-size: 0.5rem;
+  color: white;
+  margin-right: 0.33rem;
+  cursor: pointer;
+  transition: background-color ease-out 0.5s;
+}
+
+.budget-btn-choose:hover {
+  background-color: #29795d;
+}
+
+.budget-btn-choose:disabled {
+  background-color: #dedede;
+}
+
+.budget-no {
+  background-color: #a0a0a0;
 }
 
 @media screen and (max-width: 912px) {

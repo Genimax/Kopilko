@@ -19,11 +19,12 @@
           <p class="budget-label">Бюджет на месяц</p>
           <img
             class="edit-pencil"
+            id="budget_module_opener"
             src="../images/pencil-white.svg"
             alt="pencil-icon"
           />
         </div>
-        <p class="label-number">3 200 000 ₽</p>
+        <p class="label-number" id="month_budget_number"><%- monthBudget %></p>
       </div>
       <div class="data-main-block">
         <div class="complex-label-block">
@@ -108,7 +109,34 @@
         </div>
       </div>
     </module>
+
+    <module class="budget-module hidden">
+      <div class="window-budget">
+        <p class="budget-module-text">Бюджет на месяц</p>
+        <div class="input-block">
+          <input
+            type="text"
+            name="value"
+            id="budget_input"
+            value="<%- monthBudgetInput %>"
+          />
+          <p id="currency-label-budget">₽</p>
+        </div>
+        <p class="hidden" id="budget_warning">
+          - Поле "Бюджет" может содержать только цифры
+        </p>
+        <div class="budget-choose">
+          <button class="budget-btn-choose budget-yes" id="budget_save">
+            Сохранить
+          </button>
+          <button class="budget-btn-choose budget-no" id="budget_cancel">
+            Отмена
+          </button>
+        </div>
+      </div>
+    </module>
     <script src="../scripts/logoutScript.js"></script>
     <script src="../scripts/burgerBar.js"></script>
+    <script src="../scripts/dashboard.js"></script>
   </body>
 </html>

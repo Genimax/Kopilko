@@ -11,7 +11,7 @@ const incomePost = asyncHandler(async (req, res) => {
     { incomePerMonth: req.body.value },
     { new: true }
   );
-  res.status(201).send();
+  res.status(201).redirect('/dashboard');
 });
 
 // @desc    Post Outcomes Data
@@ -23,7 +23,7 @@ const outcomesPost = asyncHandler(async (req, res) => {
     { outcomesPerMonth: req.body },
     { new: true }
   );
-  res.status(201);
+  res.status(201).redirect('/dashboard');
 });
 
 module.exports = { incomePost, outcomesPost };

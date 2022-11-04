@@ -57,8 +57,11 @@ const outcomesSaveBtn = document.querySelector('#outcome_save');
 const warningOnlyNumbers = document.querySelector('.only-numbers');
 let outcomeNames = document.querySelectorAll('.outcome-name');
 let outcomeValues = document.querySelectorAll('.outcome-value');
+let deleteBtn = document.querySelectorAll('.delete-button');
 
 const fieldsChecker = function (valueField) {
+  outcomeNames = document.querySelectorAll('.outcome-name');
+  outcomeValues = document.querySelectorAll('.outcome-value');
   const fieldEmpty = [];
   const notNumbers = [];
 
@@ -107,6 +110,13 @@ outcomeValues.forEach((input) => {
   });
 });
 
+deleteBtn.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.remove();
+    fieldsChecker();
+  });
+});
+
 outcomesOpener.addEventListener('click', () => {
   outcomesModuleWindow.classList.remove('hidden');
 });
@@ -120,14 +130,16 @@ addOutcomeBtn.addEventListener('click', () => {
 
   field.className = 'outcomes-inputs-block';
 
-  field.innerHTML = `<input class="outcome-input outcome-name" type="text" name="name-1" />
+  field.innerHTML = `<img src="../images/delete-button.svg" class='delete-button'>
+  <input class="outcome-input outcome-name" type="text" name="name-1" />
   <input class="outcome-input outcome-value" type="text" name="value-1" />
   <p id="currency-label-outcome">₽</p>`;
 
   listOfOutcomes.appendChild(field);
 
-  const newNameField = field.childNodes[0];
-  const newValueField = field.childNodes[2];
+  const delBtn = field.querySelector('.delete-button');
+  const newNameField = field.querySelector('.outcome-name');
+  const newValueField = field.querySelector('.outcome-value');
 
   outcomeNames = document.querySelectorAll('.outcome-name');
   outcomeValues = document.querySelectorAll('.outcome-value');
@@ -138,6 +150,11 @@ addOutcomeBtn.addEventListener('click', () => {
 
   newValueField.addEventListener('input', () => {
     fieldsChecker(newValueField);
+  });
+
+  delBtn.addEventListener('click', () => {
+    delBtn.parentElement.remove();
+    fieldsChecker();
   });
 
   fieldsChecker();

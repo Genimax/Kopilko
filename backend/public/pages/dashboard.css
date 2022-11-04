@@ -329,6 +329,7 @@ module {
 
 .edit-pencil:hover {
   transform: rotate(15deg);
+  -webkit-user-drag: none;
 }
 
 .label-number {
@@ -540,6 +541,20 @@ module {
   transform: translateX(0.45rem);
 }
 
+.delete-button {
+  position: absolute;
+  width: 0.875rem;
+  align-self: center;
+  left: 0.66rem;
+  cursor: pointer;
+  transition: transform ease-out 0.5s;
+  -webkit-user-drag: none;
+}
+
+.delete-button:hover {
+  transform: rotate(90deg);
+}
+
 #currency-label-outcome {
   position: absolute;
   right: 0.7rem;
@@ -567,6 +582,7 @@ module {
   margin: 0.35rem 0;
   transition: transform ease-out 0.5s;
   cursor: pointer;
+  -webkit-user-drag: none;
 }
 
 #add_outcome:hover {
@@ -625,6 +641,7 @@ module {
   margin: 0;
   padding: 0;
 }
+
 @media screen and (max-width: 912px) {
   html {
     font-family: 'Raleway', sans-serif;

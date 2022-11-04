@@ -27,6 +27,7 @@ const renderPage = asyncHandler(async (req, res) => {
   const outcomeInputRenderer = function () {
     const outcomes = user.outcomesPerMonth;
     const pattern = `<div class="outcomes-inputs-block">
+    <img src="../images/delete-button.svg" class='delete-button'>
     <input class="outcome-input outcome-name" type="text" name="name" value="[KEY]"/>
     <input
       class="outcome-input outcome-value"
@@ -52,6 +53,14 @@ const renderPage = asyncHandler(async (req, res) => {
     }
   };
 
+  const objectsCalculator = function (num) {
+    if (num != 0) {
+      return Object.values(num).reduce((a, b) => {
+        return a * 1 + b * 1;
+      });
+    } else return 0;
+  };
+
   res.render(path.join(__dirname, '../public/pages/dashboard'), {
     monthBudget: numberConverter(user.incomePerMonth),
     monthBudgetInput: user.incomePerMonth,
@@ -60,15 +69,16 @@ const renderPage = asyncHandler(async (req, res) => {
       user.incomePerMonth >= 100000000
         ? 'label-number need-tooltip'
         : 'label-number',
-    outcomePerMonth:
-      Object.values(user.outcomesPerMonth).length > 0
-        ? numberConverter(
-            Object.values(user.outcomesPerMonth).reduce((a, b) => {
-              return a * 1 + b * 1;
-            })
-          )
-        : '0 ₽',
+    outcomePerMonth: `${numberConverter(
+      objectsCalculator(user.outcomesPerMonth)
+    )}`,
     outcomePerMonthInput: outcomeInputRenderer(),
+    financialGoals: numberConverter(objectsCalculator(user.goals)),
+    freeFinances: numberConverter(
+      user.incomePerMonth * 1 -
+        objectsCalculator(user.outcomesPerMonth) * 1 -
+        user.goals * 1
+    ),
   });
 });
 

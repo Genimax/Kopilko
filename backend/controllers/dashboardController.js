@@ -54,7 +54,7 @@ const renderPage = asyncHandler(async (req, res) => {
   };
 
   const objectsCalculator = function (num) {
-    if (num != 0) {
+    if (typeof num === 'object' && Object.keys(num).length !== 0) {
       return Object.values(num).reduce((a, b) => {
         return a * 1 + b * 1;
       });

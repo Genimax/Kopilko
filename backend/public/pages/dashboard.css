@@ -633,6 +633,49 @@ module {
   text-align: center;
 }
 
+.expences-tooltip {
+  position: relative;
+  cursor: help;
+  border-bottom: 0.15rem dotted rgba(255, 255, 255, 0.749);
+}
+
+.expences-tooltip::before,
+.expences-tooltip::after {
+  --scale: 0;
+  --tooltip-color: black;
+  position: absolute;
+  bottom: -0.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(110%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: top center;
+}
+
+.expences-tooltip::before {
+  content: attr(data-tooltip);
+  white-space: pre;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 200;
+  text-align: justify;
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  width: max-content;
+  max-width: 200%;
+  background: var(--tooltip-color);
+}
+
+.expences-tooltip:hover::before,
+.expences-tooltip:hover::after {
+  --scale: 1;
+}
+
+.expences-tooltip::after {
+  content: '';
+  border: 0.41rem solid transparent;
+  border-bottom-color: var(--tooltip-color);
+}
+
 .hidden {
   transform: scale(0);
   opacity: 0;

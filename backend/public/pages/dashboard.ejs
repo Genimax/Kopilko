@@ -42,7 +42,12 @@
             alt="pencil-icon"
           />
         </div>
-        <p class="label-number"><%- outcomePerMonth %></p>
+        <p
+          class="label-number <%- expencesModClass %>"
+          data-tooltip="<%- monthExpencesTooltip %>"
+        >
+          <%- outcomePerMonth %>
+        </p>
       </div>
       <div class="data-main-block">
         <p class="goal-label">Планируемые накопления</p>

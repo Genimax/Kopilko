@@ -61,6 +61,18 @@ const renderPage = asyncHandler(async (req, res) => {
     } else return 0;
   };
 
+  const outcomesToTooltipConverter = function (obj) {
+    if (typeof obj === 'object' && Object.keys(obj).length !== 0) {
+      let result = '';
+      for (key in obj) {
+        result += `${key.length > 15 ? key.slice(0, 15) + '...' : key}: ${
+          obj[key].length > 15 ? obj[key].slice(0, 15) + '...' : obj[key]
+        } ₽\n`;
+      }
+      return result;
+    } else return 0;
+  };
+
   res.render(path.join(__dirname, '../public/pages/dashboard'), {
     monthBudget: numberConverter(user.incomePerMonth),
     monthBudgetInput: user.incomePerMonth,
@@ -79,6 +91,11 @@ const renderPage = asyncHandler(async (req, res) => {
         objectsCalculator(user.outcomesPerMonth) * 1 -
         user.goals * 1
     ),
+    monthExpencesTooltip: outcomesToTooltipConverter(user.outcomesPerMonth),
+    expencesModClass:
+      outcomesToTooltipConverter(user.outcomesPerMonth) !== 0
+        ? 'expences-tooltip'
+        : '',
   });
 });
 

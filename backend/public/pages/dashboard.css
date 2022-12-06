@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;800;900&display=swap');
 
 html {
   font-family: 'Raleway', sans-serif;
@@ -9,7 +9,7 @@ html {
 
 body {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #2d3f55, #0f151c);
@@ -25,9 +25,19 @@ p {
   color: white;
 }
 
-.logo-section {
+span {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-link {
+  position: absolute;
   margin-top: 2.25rem;
   margin-left: 2.5rem;
+}
+
+.logo-section {
+  position: absolute;
   display: flex;
   height: 3.65rem;
   user-select: none;
@@ -107,6 +117,7 @@ p {
 }
 
 .logo-side-section {
+  position: relative;
   margin: 0;
   padding: 0;
 }
@@ -310,11 +321,11 @@ module {
 }
 
 .goal-label {
-  width: 6.8rem;
+  width: 10rem;
 }
 
 .free-finances-label {
-  width: 5.9rem;
+  width: 10rem;
 }
 
 .edit-pencil {
@@ -674,6 +685,245 @@ module {
   content: '';
   border: 0.41rem solid transparent;
   border-bottom-color: var(--tooltip-color);
+}
+
+.goals-block {
+  padding-left: 15.5rem;
+  padding-top: 11.16rem;
+  width: 45.5rem;
+}
+
+.new-goal-btn {
+  width: 100%;
+  height: 2rem;
+  color: white;
+  background-color: #597ca7;
+  border: none;
+  border-radius: 0.83rem;
+  font-size: 0.83rem;
+  transition: background-color 0.3s ease-out;
+}
+
+.new-goal-btn:hover {
+  cursor: pointer;
+  background-color: #3fba8f;
+}
+
+.new-goal-btn:active {
+  background-color: #0073ff;
+}
+
+.goals-grid {
+  padding-top: 1rem;
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.goal-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 21.75rem;
+  height: 11.6rem;
+  background: linear-gradient(
+    116.1deg,
+    #435e7e 0%,
+    #2c4a6c 52.08%,
+    #1a395e 100%
+  );
+  border-radius: 1rem;
+  transition: all 0.4s ease-out;
+}
+
+.goal-card:hover {
+  box-shadow: 0 0 0.7rem rgba(255, 255, 255, 0.753);
+}
+
+.edit-pencil-back {
+  position: absolute;
+  display: flex;
+  right: 1rem;
+  top: 1rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 1.25rem;
+  background-color: #0f151c;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.edit-pencil-back:hover {
+  background-color: transparent;
+}
+
+.goal-edit-pencil {
+  width: 0.625rem;
+  height: 0.625rem;
+  -webkit-user-drag: none;
+}
+
+.goal-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  height: 5rem;
+  width: 6rem;
+  -webkit-user-drag: none;
+}
+
+.goal-name {
+  position: absolute;
+  text-align: right;
+  right: 1rem;
+  top: 2.5rem;
+  max-width: 14rem;
+  height: 1.2rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: default;
+}
+
+.goal-link {
+  position: absolute;
+  right: 1rem;
+  top: 3.7rem;
+  max-width: 13rem;
+  font-size: 0.58rem;
+  color: rgb(191, 191, 191);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.goal-monthly {
+  position: relative;
+  text-align: right;
+  font-weight: 800;
+  font-size: 1.66rem;
+  width: 90%;
+  margin-top: 6rem;
+  margin-left: 10%;
+  transform: translateX(-1rem);
+  -webkit-font-feature-settings: 'lnum';
+  -moz-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  cursor: default;
+}
+
+.goal-date-block {
+  bottom: 0.5rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 3.875rem;
+  height: 0.83rem;
+  background: #65bf92;
+  border-radius: 0.2rem;
+  font-size: 0.58rem;
+  font-weight: 500;
+  -webkit-font-feature-settings: 'lnum';
+  -moz-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  cursor: default;
+}
+
+.progress-bar {
+  position: relative;
+  width: 91%;
+  align-self: center;
+  height: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #2d3f55 0%, #0f151c 100%);
+  border-radius: 1rem;
+}
+
+.progress-line {
+  position: absolute;
+  height: 100%;
+  background-color: #65bf92;
+  border-bottom-left-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.add-money-to-goal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #398a61;
+  transition: background-color 0.3s ease-out;
+  cursor: pointer;
+}
+
+.add-money-to-goal:hover {
+  background-color: #0f151c;
+}
+
+.plus-btn {
+  align-self: center;
+  width: 0.58rem;
+  height: 0.58rem;
+  -webkit-user-drag: none;
+}
+
+.add-money-to-goal::before,
+.add-money-to-goal::after {
+  --scale: 0;
+  --tooltip-color: white;
+  position: absolute;
+  bottom: -0.15rem;
+  left: 0;
+  transform: translateX(-37%) translateY(100%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: top center;
+}
+
+.add-money-to-goal::before {
+  content: 'внести сумму';
+  text-align: center;
+  font-size: 0.5rem;
+
+  padding: 0 0.5rem;
+  padding-top: 0.25rem;
+  border-radius: 0.6rem;
+  width: max-content;
+  max-width: 3.95rem;
+  height: 0.8rem;
+  background: black;
+  color: white;
+}
+
+.add-money-to-goal:hover::before,
+.add-money-to-goal:hover::after {
+  --scale: 1;
+}
+
+.progress-label {
+  position: relative;
+  max-width: 80%;
+  font-size: 0.58rem;
+  align-self: center;
+  -webkit-font-feature-settings: 'lnum';
+  -moz-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: default;
 }
 
 .hidden {

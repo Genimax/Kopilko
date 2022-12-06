@@ -50,13 +50,88 @@
         </p>
       </div>
       <div class="data-main-block">
-        <p class="goal-label">Планируемые накопления</p>
+        <p class="goal-label">Планируемые накопления в месяц</p>
         <p class="label-number"><%- financialGoals %></p>
       </div>
       <div class="data-main-block">
-        <p class="free-finances-label">Свободные финансы</p>
+        <p class="free-finances-label">Свободные финансы на месяц</p>
         <p class="label-number"><%- freeFinances %></p>
       </div>
+    </section>
+
+    <section class="goals-block">
+      <button class="new-goal-btn">Добавить новую цель</button>
+      <div class="goals-grid">
+        <div class="goal-card" goalID="6543216847">
+          <div class="edit-pencil-back">
+            <img
+              class="goal-edit-pencil"
+              src="../images/Goal Pencil Main.svg"
+              alt="goal edit icon"
+            />
+          </div>
+          <img
+            class="goal-icon"
+            src="../images/Goal Icon Main.svg"
+            alt="goal icon"
+          />
+          <p class="goal-name">Покупка дома</p>
+          <a href="/" class="goal-link">ссылка на цель</a>
+          <p class="goal-monthly">180 000 ₽/ MEC</p>
+          <div class="progress-bar">
+            <div class="progress-line" style="width: 45%"></div>
+            <button class="add-money-to-goal">
+              <img class="plus-btn" src="../images/add-money-btn.svg" alt="" />
+            </button>
+
+            <p class="progress-label">1 759 00 / 7 500 000</p>
+          </div>
+          <div class="goal-date-block">
+            <p class="goal-date">04.11.2024</p>
+          </div>
+        </div>
+        <div class="goal-card" goalID="6543216847">
+          <div class="edit-pencil-back">
+            <img
+              class="goal-edit-pencil"
+              src="../images/Goal Pencil Main.svg"
+              alt="goal edit icon"
+            />
+          </div>
+          <img
+            class="goal-icon"
+            src="../images/Goal Icon Main.svg"
+            alt="goal icon"
+          />
+          <p class="goal-name">Покупка дома</p>
+          <a href="/" class="goal-link">ссылка на цель</a>
+          <p class="goal-monthly">180 000 ₽/ MEC</p>
+          <div class="progress-bar">
+            <div class="progress-line" style="width: 45%"></div>
+            <button class="add-money-to-goal">
+              <img class="plus-btn" src="../images/add-money-btn.svg" alt="" />
+            </button>
+
+            <p class="progress-label">1 759 00 / 7 500 000</p>
+          </div>
+          <div class="goal-date-block">
+            <p class="goal-date">04.11.2024</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="logo-link">
+      <a href="/dashboard">
+        <div class="logo-section">
+          <img
+            class="kopilko-logo-img"
+            src="../images/vector-logo.svg"
+            alt="logo"
+          />
+          <p class="kopilko-logo-text">KOPILKO</p>
+        </div>
+      </a>
     </section>
 
     <menu class="burger-menu" id="side_menu">
@@ -96,19 +171,6 @@
       </div>
       <button class="logout">Выйти</button>
     </menu>
-
-    <section>
-      <a href="/dashboard">
-        <div class="logo-section">
-          <img
-            class="kopilko-logo-img"
-            src="../images/vector-logo.svg"
-            alt="logo"
-          />
-          <p class="kopilko-logo-text">KOPILKO</p>
-        </div>
-      </a>
-    </section>
 
     <module class="exit hidden">
       <div class="window-exit">

@@ -5,6 +5,9 @@ html {
   font-size: 1.3vw;
   margin: 0;
   padding: 0;
+  -webkit-font-feature-settings: 'lnum';
+  -moz-font-feature-settings: 'lnum';
+  font-feature-settings: 'lnum';
 }
 
 body {
@@ -350,9 +353,6 @@ module {
   text-align: center;
   font-size: 1.66rem;
   font-weight: 800;
-  -webkit-font-feature-settings: 'lnum';
-  -moz-font-feature-settings: 'lnum';
-  font-feature-settings: 'lnum';
 }
 
 .need-tooltip {
@@ -735,11 +735,19 @@ module {
     #1a395e 100%
   );
   border-radius: 1rem;
-  transition: all 0.4s ease-out;
+  transition: box-shadow 0.25s ease-out;
 }
 
 .goal-card:hover {
-  box-shadow: 0 0 0.7rem rgba(255, 255, 255, 0.753);
+  box-shadow: 0 0 0.7rem rgb(103, 80, 255);
+}
+
+.goal-card-hurry {
+  background: linear-gradient(116.1deg, #e84a58 0%, #8e232d 100%);
+}
+
+.goal-card-hurry:hover {
+  box-shadow: 0 0 0.7rem rgb(255, 80, 80);
 }
 
 .edit-pencil-back {
@@ -789,6 +797,10 @@ module {
   cursor: default;
 }
 
+.goal-card-hurry > .goal-name {
+  color: black;
+}
+
 .goal-link {
   position: absolute;
   right: 1rem;
@@ -800,6 +812,10 @@ module {
   overflow: hidden;
 }
 
+.goal-card-hurry > .goal-link {
+  color: #0f151c;
+}
+
 .goal-monthly {
   position: relative;
   text-align: right;
@@ -809,13 +825,14 @@ module {
   margin-top: 6rem;
   margin-left: 10%;
   transform: translateX(-1rem);
-  -webkit-font-feature-settings: 'lnum';
-  -moz-font-feature-settings: 'lnum';
-  font-feature-settings: 'lnum';
   white-space: nowrap;
   overflow: hidden;
   margin-bottom: 0.5rem;
   cursor: default;
+}
+
+.goal-card-hurry > .goal-monthly {
+  color: black;
 }
 
 .goal-date-block {
@@ -831,10 +848,11 @@ module {
   border-radius: 0.2rem;
   font-size: 0.58rem;
   font-weight: 500;
-  -webkit-font-feature-settings: 'lnum';
-  -moz-font-feature-settings: 'lnum';
-  font-feature-settings: 'lnum';
   cursor: default;
+}
+
+.goal-card-hurry > .goal-date-block {
+  background: #e32636;
 }
 
 .progress-bar {
@@ -853,8 +871,11 @@ module {
   position: absolute;
   height: 100%;
   background-color: #65bf92;
-  border-bottom-left-radius: 1rem;
-  border-top-left-radius: 1rem;
+  border-radius: 1rem;
+}
+
+.goal-card-hurry > .progress-bar > .progress-line {
+  background-color: #e32636;
 }
 
 .add-money-to-goal {
@@ -868,6 +889,10 @@ module {
   background-color: #398a61;
   transition: background-color 0.3s ease-out;
   cursor: pointer;
+}
+
+.goal-card-hurry > .progress-bar > .add-money-to-goal {
+  background-color: #4e0a10;
 }
 
 .add-money-to-goal:hover {
@@ -918,12 +943,126 @@ module {
   max-width: 80%;
   font-size: 0.58rem;
   align-self: center;
-  -webkit-font-feature-settings: 'lnum';
-  -moz-font-feature-settings: 'lnum';
-  font-feature-settings: 'lnum';
   white-space: nowrap;
   overflow: hidden;
   cursor: default;
+}
+
+.module-window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2d3f55;
+  border-radius: 1rem;
+}
+
+#create_goal_window {
+  min-height: 19rem;
+  width: 16.66rem;
+}
+
+.add-goal-module-name {
+  margin: 0;
+  padding: 0;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.66rem;
+  color: white;
+}
+
+.inputs-block {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.add-goal-input {
+  font-family: inherit;
+  width: 11.6rem;
+  height: 1.25rem;
+  border-radius: 0.2rem;
+  border: none;
+  outline: none;
+  padding: 0 0.42rem;
+  margin-bottom: 0.41rem;
+  font-size: 0.5rem;
+}
+
+.add-goal-input::placeholder {
+  color: #a0a0a0;
+}
+
+input[type='date'] {
+  color: black;
+}
+
+input[type='date']::before {
+  color: #a0a0a0;
+  width: 100%;
+  content: attr(placeholder);
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+  display: none;
+}
+
+.add-goal-buttons {
+  width: 12.6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-btn,
+.cancel-btn {
+  width: 5.625rem;
+  height: 1.29rem;
+  border: none;
+  background-color: #65bf92;
+  color: white;
+  font-size: 0.5rem;
+  border-radius: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-out;
+}
+
+.save-btn:hover,
+.cancel-btn:hover {
+  background-color: #29795d;
+}
+
+.save-btn:disabled {
+  background-color: #dedede;
+  cursor: default;
+}
+
+.cancel-btn {
+  background-color: #a0a0a0;
+}
+
+.field-error {
+  background-color: #f6b7bc;
+}
+
+.field-error::placeholder {
+  color: #505050;
+}
+
+.goal-wrong-data {
+  font-size: 0.5rem;
+  width: 12.5rem;
+}
+
+.goal-red-line-error {
+  color: #e84a58;
+  margin-bottom: 0.2rem;
+}
+
+.error-date {
+  color: #f1939b;
 }
 
 .hidden {

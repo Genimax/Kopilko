@@ -189,3 +189,57 @@ outcomesSaveBtn.addEventListener('click', async () => {
   xhr.setRequestHeader('Content-Type', 'application/json');
   await xhr.send(JSON.stringify(toSend));
 });
+
+/////////////////////////////////////////////
+///// NEW GOAL MODULE LISTENER
+createGoalName = document.getElementById('add_goal_name');
+createGoalPrice = document.getElementById('add_goal_price');
+createGoalDate = document.getElementById('add_goal_date');
+createGoalLink = document.getElementById('add_goal_link');
+createGoalMonthlySum = document.getElementById('add_goal_permonth');
+btnCreateGoal = document.getElementById('create_goal');
+btnCancelCreatingGoal = document.getElementById('cancel_goal_creation');
+
+const isValidURL = function (string) {
+  var res = string.match(
+    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+  );
+  return res !== null;
+};
+
+const goalCreateButtonValidator = function (imputElement) {
+  const errorFields = function () {
+    const errors = [];
+
+    if (!createGoalName.value.trim()) errors.push(createGoalName);
+    if (isNaN(createGoalPrice.value) || createGoalPrice.value * 1 < 1) {
+      errors.push(createGoalPrice);
+    }
+    if (createGoalLink.value && !isValidURL(createGoalLink.value)) {
+      errors.push(createGoalLink);
+    }
+    if (!createGoalDate.value) errors.push(createGoalDate);
+    if (!createGoalMonthlySum.value.trim()) {
+      errors.push(createGoalMonthlySum);
+    }
+
+    return errors;
+  };
+
+  btnCreateGoal.disabled =
+    !createGoalName.value.trim() ||
+    isNaN(createGoalPrice.value) ||
+    createGoalPrice.value * 1 < 1 ||
+    (createGoalLink.value && !isValidURL(createGoalLink.value)) ||
+    !createGoalMonthlySum.value.trim() ||
+    !createGoalDate.value;
+
+  return !btnCreateGoal.disabled;
+};
+
+createGoalName.addEventListener('input', () => {
+  goalCreateButtonValidator();
+  !createGoalName.value.trim()
+    ? createGoalName.classList.add('field-error')
+    : createGoalName.classList.remove('field-error');
+});

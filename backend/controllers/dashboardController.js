@@ -126,9 +126,11 @@ const renderPage = asyncHandler(async (req, res) => {
         <a href="${goal.goalLink}" class="goal-link" goalID="${goal._id}">${
           goal.goalLink !== '' ? 'ссылка на цель' : ''
         } </a>
-        <p class="goal-monthly" goalID="${
-          goal._id
-        }">${goal.goalFundsPerMonth.toLocaleString()} ₽/ MEC</p>
+        <p class="goal-monthly" goalID="${goal._id}">${
+          goal.goalFundsPerMonth.toLocaleString().includes(',')
+            ? goal.goalFundsPerMonth.toLocaleString().replaceAll(',', ' ')
+            : goal.goalFundsPerMonth.toLocaleString()
+        } ₽/ MEC</p>
         <div class="progress-bar">
           <div class="progress-line" style="width: ${Math.min(
             Math.round((goal.goalFunded * 100) / goal.goalPrice),

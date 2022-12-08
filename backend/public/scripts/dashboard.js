@@ -626,7 +626,7 @@ btnsOpenEditor.forEach((btnOpenEditor) => {
     document
       .querySelector(`[class="goal-monthly"][goalid="${goalID}"]`)
       .innerHTML.split(' ₽/')[0]
-      .replaceAll('&nbsp;', '') * 1;
+      .replaceAll(' ', '') * 1;
 
   const goalCardFunded =
     document

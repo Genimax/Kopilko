@@ -77,13 +77,6 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    // res.status(201).json({
-    //   _id: user.id,
-    //   login: user.login,
-    //   name: user.name,
-    //   token: generateToken(user._id),
-    // });
-
     res.status(201);
     res.sendFile(path.join(__dirname, '../public/pages/auth.html'));
   } else {
@@ -108,13 +101,6 @@ const loginUser = asyncHandler(async (req, res) => {
     // TODO
     res.cookie('token', generateToken(user._id));
     res.status(200);
-    // res.json({
-    //   _id: user.id,
-    //   login: user.login,
-    //   name: user.name,
-    //   token: generateToken(user._id),
-    // });
-
     res.redirect('/dashboard');
   } else {
     res.status(400);

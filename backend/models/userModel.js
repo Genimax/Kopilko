@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema(
     password: { type: String, required: [true, 'Пожалуйста, введите пароль.'] },
     incomePerMonth: { type: Number },
     outcomesPerMonth: { type: Object },
-    goals: { type: Object },
+    goals: { type: Array },
   },
   { timestamps: true }
 );

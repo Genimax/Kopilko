@@ -55,70 +55,13 @@
       </div>
       <div class="data-main-block">
         <p class="free-finances-label">Свободные финансы на месяц</p>
-        <p class="label-number"><%- freeFinances %></p>
+        <p class="label-number" id="free_finances_label"><%- freeFinances %></p>
       </div>
     </section>
 
     <section class="goals-block">
       <button class="new-goal-btn">Добавить новую цель</button>
-      <div class="goals-grid">
-        <div class="goal-card goal-card-hurry" goalID="6543216847">
-          <div class="edit-pencil-back">
-            <img
-              class="goal-edit-pencil"
-              src="../images/Goal Pencil Main.svg"
-              alt="goal edit icon"
-            />
-          </div>
-          <img
-            class="goal-icon"
-            src="../images/Goal Icon Hurry.svg"
-            alt="goal icon"
-          />
-          <p class="goal-name">Покупка дома</p>
-          <a href="/" class="goal-link">ссылка на цель</a>
-          <p class="goal-monthly">180 000 ₽/ MEC</p>
-          <div class="progress-bar">
-            <div class="progress-line" style="width: 45%"></div>
-            <button class="add-money-to-goal">
-              <img class="plus-btn" src="../images/add-money-btn.svg" alt="" />
-            </button>
-
-            <p class="progress-label">1 759 00 / 7 500 000</p>
-          </div>
-          <div class="goal-date-block">
-            <p class="goal-date">04.11.2024</p>
-          </div>
-        </div>
-        <div class="goal-card" goalID="6543216847">
-          <div class="edit-pencil-back">
-            <img
-              class="goal-edit-pencil"
-              src="../images/Goal Pencil Main.svg"
-              alt="goal edit icon"
-            />
-          </div>
-          <img
-            class="goal-icon"
-            src="../images/Goal Icon Main.svg"
-            alt="goal icon"
-          />
-          <p class="goal-name">Покупка дома</p>
-          <a href="/" class="goal-link">ссылка на цель</a>
-          <p class="goal-monthly">180 000 ₽/ MEC</p>
-          <div class="progress-bar">
-            <div class="progress-line" style="width: 50%"></div>
-            <button class="add-money-to-goal">
-              <img class="plus-btn" src="../images/add-money-btn.svg" alt="" />
-            </button>
-
-            <p class="progress-label">1 759 00 / 7 500 000</p>
-          </div>
-          <div class="goal-date-block">
-            <p class="goal-date">04.11.2024</p>
-          </div>
-        </div>
-      </div>
+      <div class="goals-grid"><%- goalCards %></div>
     </section>
 
     <section class="logo-link">
@@ -173,57 +116,79 @@
     </menu>
     <module class="add-goal-module hidden">
       <div class="module-window" id="create_goal_window">
-        <h1 class="add-goal-module-name">Новая цель</h1>
+        <h1 class="module-name">Новая цель</h1>
         <div class="inputs-block">
           <input
             type="text"
             placeholder="Введите название цели*"
-            class="add-goal-input"
+            class="default-input"
             id="add_goal_name"
           />
           <input
             type="text"
             placeholder="Введите стоимость цели*"
-            class="add-goal-input"
+            class="default-input"
             id="add_goal_price"
           />
           <input
             type="date"
             placeholder="Дата достижения*:"
-            class="add-goal-input"
+            class="default-input"
             id="add_goal_date"
             required="yes"
           />
           <input
             type="text"
             placeholder="Ссылка на цель (необязательно)"
-            class="add-goal-input"
+            class="default-input"
             id="add_goal_link"
           />
           <input
             type="text"
             placeholder="Откладываемая сумма в месяц"
-            class="add-goal-input"
+            class="default-input"
             id="add_goal_permonth"
           />
         </div>
-        <div class="goal-wrong-data hidden">
+        <p class="wrong-type-data hidden" id="add_goal_price_error">
+          Поле "Стоимость цели" должно содержать числа больше нуля
+        </p>
+        <p class="wrong-type-data hidden" id="add_goal_date_error">
+          Дата достижения цели должна быть позднее $[DATENOW]
+        </p>
+        <p class="wrong-type-data hidden" id="add_goal_link_error">
+          Введите корректную ссылку на цель
+        </p>
+        <p class="wrong-type-data hidden" id="add_goal_monthly_sum_error">
+          Поле "Откладываемая сумма в месяц" должно содержать числа больше нуля,
+          но не превышать сумму свободных финансов <%- freeFinances %>.
+        </p>
+
+        <div class="goal-wrong-data hidden" id="goal_create_total_error">
           <p class="goal-red-line-error">
             Сумма накоплений для достижения цели до
-            <span class="error-date">22.03.2024</span> больше свободных
-            финансов.Свободных финансов: 2600 руб.
+            <span class="error-date">$[GOALDATE]</span> больше свободных
+            финансов. Свободных финансов: $[FREEFINANCES] руб.
           </p>
           <p class="goal-white-line-error">
             Измените параметры “стоимость”, “дата достижения цели” или
             “планируемые накопления”.
           </p>
         </div>
-        <div class="add-goal-buttons">
-          <button class="save-btn" id="create_goal">Создать цель</button>
+        <div class="goal-confirm-data hidden" id="goal_create_confirm_div">
+          <p class="goal-white-line-error" id="goal_create_confirm_message">
+            $[confirmAlert]
+          </p>
+        </div>
+        <div class="main-two-module-buttons">
+          <button class="save-btn" disabled="true" id="create_goal">
+            Создать цель
+          </button>
           <button class="cancel-btn" id="cancel_goal_creation">Отмена</button>
         </div>
       </div>
     </module>
+    <%- addToSumGoalModules %>
     <module class="exit hidden">
       <div class="window-exit">
         <p class="exit-question">Вы уверены, что хотите выйти?</p>

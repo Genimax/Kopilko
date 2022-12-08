@@ -300,9 +300,12 @@ const editGoal = asyncHandler(async (req, res) => {
 // @access  PRIVATE
 const deleteGoal = asyncHandler(async (req, res) => {
   const goal = await Goal.findById(req.body.goalID);
+  const user = await User.findById(req.user.id);
 
-  if (goal) {
+  if (goal && user) {
     await Goal.findByIdAndDelete(goal._id);
+    user.goals.splice(user.goals.indexOf(goal._id), 1);
+    await User.findByIdAndUpdate(user._id, user);
     res.status(200).redirect('/dashboard');
   } else {
     res.status(400).json('Ошибка. Введите корректные данные.');

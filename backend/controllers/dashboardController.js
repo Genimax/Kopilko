@@ -123,9 +123,9 @@ const renderPage = asyncHandler(async (req, res) => {
           alt="goal icon"
         />
         <p class="goal-name" goalID="${goal._id}">${goal.goalName}</p>
-        <a href="${goal.goalLink}" class="goal-link" goalID="${goal._id}">${
-          goal.goalLink !== '' ? 'ссылка на цель' : ''
-        } </a>
+        <a href="${goal.goalLink}" class="goal-link"  target="_blank" goalID="${
+          goal._id
+        }">${goal.goalLink !== '' ? 'ссылка на цель' : ''} </a>
         <p class="goal-monthly" goalID="${goal._id}">${numberWithSpaces(
           goal.goalFundsPerMonth
         )} ₽/ MEC</p>

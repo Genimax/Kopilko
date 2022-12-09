@@ -344,7 +344,7 @@ const goalModuleListen = function (
 
       if (goalPrice / daysTillFinish < freeFinancialsPerMonth / 30) {
         totalErrorEl.classList.add('hidden');
-        if (!onlyCheck) {
+        if (!onlyCheck && !isNaN(monthlySumSuggested)) {
           goalMonthlySumEl.value = monthlySumSuggested;
         }
         const confirmAlert = `Для достижения цели вам необходимо ежемесячно откладывать ${goalMonthlySumEl.value.toLocaleString()} рублей. Нажмите "Создать цель" или измените планируемую сумму накоплений.`;
@@ -359,7 +359,7 @@ const goalModuleListen = function (
         return true;
       } else {
         confirmMessageEl.classList.add('hidden');
-        if (!onlyCheck) {
+        if (!onlyCheck && !isNaN(monthlySumSuggested)) {
           goalMonthlySumEl.value = monthlySumSuggested;
         }
         totalErrorEl.firstElementChild.firstElementChild.innerHTML =
@@ -398,6 +398,7 @@ const goalModuleListen = function (
   });
 
   goalPriceEl.addEventListener('input', () => {
+    goalPriceEl.value = goalPriceEl.value.replaceAll(' ', '');
     errorCheck(goalNameEl);
     errorCheck(goalPriceEl);
     completeGoalValidation();

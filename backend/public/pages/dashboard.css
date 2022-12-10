@@ -772,10 +772,10 @@ module {
 
 .delete-goal-button {
   position: absolute;
-  width: 1rem;
-  height: 1rem;
+  width: 1.25rem;
+  height: 1.25rem;
   right: 0.8rem;
-  top: 0.8rem;
+  top: 0.65rem;
   -webkit-user-drag: none;
   cursor: pointer;
   border-radius: 1rem;
@@ -784,7 +784,6 @@ module {
 
 .delete-goal-button:hover {
   rotate: 180deg;
-  scale: 1.2;
 }
 
 .goal-edit-pencil {

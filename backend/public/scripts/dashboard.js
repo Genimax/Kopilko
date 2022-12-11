@@ -321,9 +321,13 @@ const goalModuleListen = function (
   };
 
   const completeGoalValidation = function (onlyCheck) {
-    const goalID =
-      document.getElementById('edit_goal_window').attributes.goalid;
-
+    let goalID;
+    try {
+      goalID =
+        document.getElementById('edit_goal_window').attributes.goalid || false;
+    } catch {
+      goalID = false;
+    }
     if (goalDateEl.value && goalPriceEl.value) {
       const goalPrice = goalPriceEl.value * 1;
       const goalDate = Date.parse(

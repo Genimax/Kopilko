@@ -271,14 +271,7 @@ const goalModuleListen = function (
       ) {
         errors.push(goalDateEl);
       }
-      if (
-        !goalMonthlySumEl.value.trim() ||
-        isNaN(goalMonthlySumEl.value) ||
-        (!goalFundedEl && goalMonthlySumEl.value > freeFinancialsPerMonth) ||
-        (goalFundedEl &&
-          goalMonthlySumEl.value >
-            freeFinancialsPerMonth + cardPricePerMonth * 1)
-      ) {
+      if (!goalMonthlySumEl.value.trim() || isNaN(goalMonthlySumEl.value)) {
         errors.push(goalMonthlySumEl);
       }
       return errors;
@@ -328,6 +321,9 @@ const goalModuleListen = function (
   };
 
   const completeGoalValidation = function (onlyCheck) {
+    const goalID =
+      document.getElementById('edit_goal_window').attributes.goalid;
+
     if (goalDateEl.value && goalPriceEl.value) {
       const goalPrice = goalPriceEl.value * 1;
       const goalDate = Date.parse(
@@ -342,7 +338,21 @@ const goalModuleListen = function (
         goalPrice
       );
 
-      if (goalPrice / daysTillFinish < freeFinancialsPerMonth / 30) {
+      if (
+        goalPrice / daysTillFinish < freeFinancialsPerMonth / 30 ||
+        (goalID &&
+          goalNameEl.parentElement.previousElementSibling.innerHTML ===
+            'Изменить цель' &&
+          goalPrice / daysTillFinish <
+            freeFinancialsPerMonth / 30 +
+              document
+                .querySelector(
+                  `[class="goal-monthly"][goalid="${goalID.value}"]`
+                )
+                .innerHTML.split(' ₽/ ')[0]
+                .replaceAll(' ', '') *
+                1)
+      ) {
         totalErrorEl.classList.add('hidden');
         if (!onlyCheck && !isNaN(monthlySumSuggested)) {
           goalMonthlySumEl.value = monthlySumSuggested;
@@ -686,7 +696,7 @@ btnsOpenEditor.forEach((btnOpenEditor) => {
     />
     </div>
     <p class="wrong-type-data hidden" id="edit_goal_price_error">
-      Поле "Стоимость цели" должно содержать числа больше нуля
+      Поле "Стоимость цели" должно содержать только числа
     </p>
     <p class="wrong-type-data hidden" id="edit_goal_date_error">
       Дата достижения цели должна быть позднее $[DATENOW]
@@ -696,18 +706,26 @@ btnsOpenEditor.forEach((btnOpenEditor) => {
     </p>
     
     <p class="wrong-type-data hidden" id="edit_goal_funded_error">
-      Поле "Отложенная сумма" должно содержать числа больше нуля
+      Поле "Отложенная сумма" должно содержать только числа
     </p>
     <p class="wrong-type-data hidden" id="edit_goal_monthly_sum_error">
-      Поле "Откладываемая сумма в месяц" должно содержать числа больше нуля,
-      но не превышать сумму свободных финансов <%- freeFinances %>.
+      Поле "Откладываемая сумма в месяц" должно содержать только числа.
     </p>
 
     <div class="goal-wrong-data hidden" id="edit_wrong_data">
       <p class="goal-red-line-error">
         Сумма накоплений для достижения цели до
         <span class="error-date">$[GOALDATE]</span> больше свободных
-        финансов. Свободных финансов: $[FREEFINANCES] руб.
+        финансов. Свободных финансов: ${(
+          document
+            .getElementById('free_finances_label')
+            .innerHTML.split(' ₽')[0]
+            .replaceAll(' ', '') *
+            1 +
+          goalCardMonthly
+        )
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ₽.
       </p>
       <p class="goal-white-line-error">
         Измените параметры “стоимость”, “дата достижения цели” или

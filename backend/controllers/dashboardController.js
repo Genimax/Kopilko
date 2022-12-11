@@ -91,20 +91,58 @@ const renderPage = asyncHandler(async (req, res) => {
   const goalCardsConstructor = function (goalsArr) {
     if (goalsArr.length > 0) {
       const cards = [];
+      const cardsExpired = [];
       const specificCardClassName = function (goal) {
+        // CARD IF LESS THEN A MONTH
         if (
           goal.goalDate - Date.now() < 2592000000 &&
           goal.goalDate - Date.now() > 0 &&
           goal.goalFunded < goal.goalPrice
         ) {
-          return ' goal-card-hurry';
-        } else return '';
+          goal.status = 'hurry';
+          goal.cardClass = ' goal-card-hurry';
+          goal.cardFillDiv = '';
+          goal.deleteBtnPath = '../images/delete-btn.svg';
+          goal.goalIconPath = '../images/Goal Icon Hurry.svg';
+          goal.goalAddBtnImgPath = '../images/add-money-btn.svg';
+          return goal;
+          // CARD IF GOAL IS ACHIEVED
+        } else if (goal.goalFunded >= goal.goalPrice) {
+          goal.status = 'completed';
+          goal.cardClass = ' goal-card-completed';
+          goal.cardFillDiv = `<img class='goal-filler' src='../images/completed card sign.svg'>`;
+          goal.deleteBtnPath = '../images/delete-btn-completed.svg';
+          goal.goalIconPath = '../images/Goal Icon Complete.svg';
+          goal.goalAddBtnImgPath = '../images/add-money-btn-completed.svg';
+          return goal;
+          // CARD IF GOAL IS EXPIRED
+        } else if (goal.goalDate - Date.now() <= 0) {
+          goal.status = 'expired';
+          goal.cardClass = ' goal-card-expired';
+          goal.cardFillDiv = '';
+          goal.deleteBtnPath = '../images/delete-btn-expired.svg';
+          goal.goalIconPath = '../images/Goal Icon Expired.svg';
+          goal.goalAddBtnImgPath = '../images/add-money-btn.svg';
+          return goal;
+          // DEFAULT CARD
+        } else {
+          goal.status = 'default';
+          goal.cardClass = '';
+          goal.cardFillDiv = '';
+          goal.deleteBtnPath = '../images/delete-btn.svg';
+          goal.goalIconPath = '../images/Goal Icon Main.svg';
+          goal.goalAddBtnImgPath = '../images/add-money-btn.svg';
+          return goal;
+        }
       };
 
       goalsArr.forEach((goal) => {
-        const goalCard = `<div class="goal-card${specificCardClassName(
-          goal
-        )}" goalID="${goal._id}">
+        const goalObject = specificCardClassName(goal);
+
+        const goalCard = `<div class="goal-card${
+          goalObject.cardClass
+        }" goalID="${goal._id}">
+        ${goalObject.cardFillDiv}
         <div class="edit-pencil-back" goalID="${goal._id}">
           <img
             class="goal-edit-pencil"
@@ -112,14 +150,12 @@ const renderPage = asyncHandler(async (req, res) => {
             alt="goal edit icon"
           />
         </div>
-        <img src="../images/delete-btn.svg" class="delete-goal-button" goalID="${
-          goal._id
-        }"/>
+        <img src="${
+          goalObject.deleteBtnPath
+        }" class="delete-goal-button" goalID="${goal._id}"/>
         <img
           class="goal-icon"
-          src="../images/Goal Icon ${
-            specificCardClassName(goal) === '' ? 'Main' : 'Hurry'
-          }.svg"
+          src="${goalObject.goalIconPath}"
           alt="goal icon"
         />
         <p class="goal-name" goalID="${goal._id}">${goal.goalName}</p>
@@ -135,7 +171,9 @@ const renderPage = asyncHandler(async (req, res) => {
             100
           )}%"></div>
           <button class="add-money-to-goal" goalID="${goal._id}">
-            <img class="plus-btn" src="../images/add-money-btn.svg" alt="" />
+            <img class="plus-btn" src="${
+              goalObject.goalAddBtnImgPath
+            }" alt="" />
           </button>
 
           <p class="progress-label" goalID="${goal._id}">${goal.goalFunded} / ${
@@ -151,9 +189,14 @@ const renderPage = asyncHandler(async (req, res) => {
           .join('.')}</p>
         </div>
       </div>`;
-        cards.push(goalCard);
+        if (
+          goal.goalDate - Date.now() <= 0 &&
+          goal.goalFunded < goal.goalPrice
+        ) {
+          cardsExpired.push(goalCard);
+        } else cards.push(goalCard);
       });
-      return cards.reverse().join(' ');
+      return cards.reverse().join(' ').concat(cardsExpired.reverse().join(' '));
     } else return '';
   };
 

@@ -24,6 +24,7 @@ app.use('/dashboard', checkToken, require('./routes/dashboardRoutes'));
 app.use('/financials', checkToken, require('./routes/financialRoutes'));
 app.use('/profile', checkToken, require('./routes/profileRoute'));
 app.use('/users', require('./routes/userRoutes'));
+app.use('/', require('./routes/mainRoute'));
 
 app.use(errorHandler);
 

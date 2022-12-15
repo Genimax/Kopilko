@@ -222,6 +222,10 @@ newGoalButton.addEventListener('click', () => {
   createGoalModule.classList.remove('hidden');
 });
 
+btnCancelCreatingGoal.addEventListener('click', () => {
+  createGoalModule.classList.add('hidden');
+});
+
 const goalModuleListen = function (
   goalNameEl,
   goalPriceEl,
@@ -344,18 +348,18 @@ const goalModuleListen = function (
 
       if (
         goalPrice / daysTillFinish < freeFinancialsPerMonth / 30 ||
-        (goalID &&
-          goalNameEl.parentElement.previousElementSibling.innerHTML ===
-            'Изменить цель' &&
+        (goalNameEl.parentElement.previousElementSibling.innerHTML ===
+          'Изменить цель' &&
           goalPrice / daysTillFinish <
-            freeFinancialsPerMonth / 30 +
+            (freeFinancialsPerMonth +
               document
                 .querySelector(
                   `[class="goal-monthly"][goalid="${goalID.value}"]`
                 )
                 .innerHTML.split(' ₽/ ')[0]
                 .replaceAll(' ', '') *
-                1)
+                1) /
+              30)
       ) {
         totalErrorEl.classList.add('hidden');
         if (!onlyCheck && !isNaN(monthlySumSuggested)) {
@@ -468,10 +472,6 @@ goalModuleListen(
   goalConfirmMessage,
   goalTotalErrorMessage
 );
-
-btnCancelCreatingGoal.addEventListener('click', () => {
-  createGoalModule.classList.add('hidden');
-});
 
 btnCreateGoal.addEventListener('click', async () => {
   const URL = '/dashboard/createGoal';
@@ -623,7 +623,8 @@ btnsOpenEditor.forEach((btnOpenEditor) => {
   const goalCardPrice =
     document
       .querySelector(`[class="progress-label"][goalid="${goalID}"]`)
-      .innerHTML.split(' / ')[1] * 1;
+      .innerHTML.split(' / ')[1]
+      .replaceAll(' ', '') * 1;
 
   const goalCardDateTimestamp = Date.parse(
     document
@@ -646,7 +647,8 @@ btnsOpenEditor.forEach((btnOpenEditor) => {
   const goalCardFunded =
     document
       .querySelector(`[class="progress-label"][goalid="${goalID}"]`)
-      .innerHTML.split(' / ')[0] * 1;
+      .innerHTML.split(' / ')[0]
+      .replaceAll(' ', '') * 1;
 
   btnOpenEditor.addEventListener('click', () => {
     const moduleWindow = document.createElement('module');
@@ -805,7 +807,7 @@ btnsOpenEditor.forEach((btnOpenEditor) => {
         JSON.stringify({
           goalID: goalID,
           goalName: goalName.value.trim(),
-          goalPrice: goalPrice.value.replace(' ', '') * 1,
+          goalPrice: goalPrice.value.replaceAll(' ', '') * 1,
           goalDate: Date.parse(goalDate.value.split('.').reverse().join('.')),
           goalLink: goalLink.value.trim(),
           goalFundsPerMonth: goalPerMonth.value * 1,

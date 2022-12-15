@@ -769,7 +769,7 @@ module {
   background: #a0aebe;
 }
 
-.goal-card-expired {
+.goal-card-expired:hover {
   box-shadow: 0 0 0.7rem #7299c5;
 }
 

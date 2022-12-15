@@ -176,9 +176,9 @@ const renderPage = asyncHandler(async (req, res) => {
             }" alt="" />
           </button>
 
-          <p class="progress-label" goalID="${goal._id}">${goal.goalFunded} / ${
-          goal.goalPrice
-        }</p>
+          <p class="progress-label" goalID="${goal._id}">${numberWithSpaces(
+          goal.goalFunded
+        )} / ${numberWithSpaces(goal.goalPrice)}</p>
         </div>
         <div class="goal-date-block">
           <p class="goal-date" goalID="${goal._id}">${new Date(goal.goalDate)
@@ -326,6 +326,7 @@ const editGoal = asyncHandler(async (req, res) => {
 
   if (goal) {
     goal.goalName = req.body.goalName;
+    goal.goalPrice = req.body.goalPrice;
     goal.goalDate = req.body.goalDate;
     goal.goalLink = req.body.goalLink;
     goal.goalFundsPerMonth = req.body.goalFundsPerMonth;

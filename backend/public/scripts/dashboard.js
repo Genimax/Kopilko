@@ -338,15 +338,15 @@ const goalModuleListen = function (
         goalDateEl.value.split('.').reverse().join('.')
       );
 
-      const daysTillFinish = Math.round(
-        (goalDate - Date.now()) / (1000 * 60 * 60 * 24)
-      );
+      const daysTillFinish =
+        Math.round(goalDate - Date.now()) / (1000 * 60 * 60 * 24);
       const monthlySumSuggested = Math.min(
         Math.round((goalPrice / daysTillFinish) * 30),
         goalPrice
       );
 
       if (
+        (daysTillFinish < 30 && goalPrice <= freeFinancialsPerMonth) ||
         goalPrice / daysTillFinish < freeFinancialsPerMonth / 30 ||
         (goalNameEl.parentElement.previousElementSibling.innerHTML ===
           'Изменить цель' &&
@@ -376,6 +376,7 @@ const goalModuleListen = function (
 
         return true;
       } else {
+        console.log(daysTillFinish);
         confirmMessageEl.classList.add('hidden');
         if (!onlyCheck && !isNaN(monthlySumSuggested)) {
           goalMonthlySumEl.value = monthlySumSuggested;
@@ -427,6 +428,8 @@ const goalModuleListen = function (
     errorCheck(goalPriceEl);
     errorCheck(goalDateEl);
     completeGoalValidation();
+    errorCheck(goalMonthlySumEl);
+    completeGoalValidation(true);
   });
 
   goalLinkEl.addEventListener('input', () => {

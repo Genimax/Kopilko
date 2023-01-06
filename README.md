@@ -25,7 +25,7 @@
 
 ## Попробовать
 
-https://kopilko-development.up.railway.app
+https://gruesome-battle-development.up.railway.app/
 
 ## Авторы
 

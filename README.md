@@ -23,7 +23,7 @@
 
 ## Попробовать
 
-https://gruesome-battle-development.up.railway.app/
+https://kopilko.onrender.com/
 
 ## Авторы
 
